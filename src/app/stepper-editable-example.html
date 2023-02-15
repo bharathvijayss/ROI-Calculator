@@ -1,31 +1,68 @@
-<button mat-raised-button (click)="isEditable = !isEditable">
-  {{!isEditable ? 'Enable edit mode' : 'Disable edit mode'}}
-</button>
-
 <mat-stepper linear #stepper>
-<!-- #docregion editable -->
-  <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
-<!-- #enddocregion editable -->
-    <form [formGroup]="firstFormGroup">
-<!-- #docregion step-label -->
-      <ng-template matStepLabel>Fill out your name</ng-template>
-<!-- #enddocregion step-label -->
+  <mat-step [stepControl]="costInputForm1">
+    <form [formGroup]="costInputForm1">
       <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
+        <mat-label>Total Managers in Operation</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="B16"
+          placeholder="Total Managers in Operation"
+          required
+        />
       </mat-form-field>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
+  <mat-step [stepControl]="costInputForm2">
+    <form [formGroup]="costInputForm2">
       <mat-form-field appearance="fill">
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-               required>
+        <mat-label>Average Yearly Salary Managers?</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="B17"
+          placeholder="Average Yearly Salary Managers?"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="costInputForm3">
+    <form [formGroup]="costInputForm3">
+      <mat-form-field appearance="fill">
+        <mat-label>Total delivery staff in operation</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="B19"
+          placeholder="Total delivery staff in operation"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="costInputForm4">
+    <form [formGroup]="costInputForm4">
+      <mat-form-field appearance="fill">
+        <mat-label>Average salary delivery staff</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="B20"
+          placeholder="Average salary delivery staff"
+          required
+        />
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -36,14 +73,13 @@
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <p>You are now done.</p>
+    {{costInputForm.value | json}}
+    <!-- {{costInputForm2.value | json}}
+    {{costInputForm3.value | json}} 
+    {{costInputForm4.value | json}} -->
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
 </mat-stepper>
-
-
-<!-- Copyright 2023 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at https://angular.io/license -->

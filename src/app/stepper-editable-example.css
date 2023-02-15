@@ -7,5 +7,9 @@
 }
 
 ::ng-deep .mat-horizontal-stepper-header-container {
-  display: none;
+  display: none !important;
+}
+
+mat-form-field {
+  width: 100%;
 }
