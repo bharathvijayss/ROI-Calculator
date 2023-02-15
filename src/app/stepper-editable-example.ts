@@ -87,11 +87,11 @@ export class StepperEditableExample implements OnInit {
           B17: latestVal.B17,
           B19: latestVal.B19,
           B20: latestVal.B20,
-          B26: latestVal.B26,
-          B27: latestVal.B27,
+          B26: latestVal.B26 === 'Yes' ? 25 : latestVal.B26 === 'No' ? 0 : null,
+          B27: latestVal.B27 === 'Yes' ? 10 : latestVal.B27 === 'No' ? 0 : null,
           B30: latestVal.B30,
-          B33: latestVal.B33,
-          B34: latestVal.B34,
+          B33: latestVal.B33 === 'Yes' ? 20 : latestVal.B33 === 'No' ? 0 : null,
+          B34: latestVal.B34 === 'Yes' ? 10 : latestVal.B34 === 'No' ? 0 : null,
         };
       },
     });
