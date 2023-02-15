@@ -1,4 +1,41 @@
 <mat-stepper linear #stepper>
+  <mat-step [stepControl]="personalDetailsForm1">
+    <form [formGroup]="personalDetailsForm1">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="name"
+          placeholder="Name"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="personalDetailsForm2">
+    <form [formGroup]="personalDetailsForm2">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
   <mat-step [stepControl]="costInputForm1">
     <form [formGroup]="costInputForm1">
       <mat-form-field appearance="fill">
@@ -12,6 +49,7 @@
         />
       </mat-form-field>
       <div>
+        <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>

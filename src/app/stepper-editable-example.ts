@@ -8,6 +8,14 @@ import { combineLatest, startWith } from 'rxjs';
   styleUrls: ['stepper-editable-example.css'],
 })
 export class StepperEditableExample implements OnInit {
+  personalDetailsForm1 = this._formBuilder.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+  });
+
+  personalDetailsForm2 = this._formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+  });
+
   costInputForm1 = this._formBuilder.group({
     B16: ['', Validators.required],
   });
@@ -74,6 +82,12 @@ export class StepperEditableExample implements OnInit {
 
   ngOnInit() {
     const CostInputFormobservables = {
+      name: this.personalDetailsForm1.controls.name.valueChanges.pipe(
+        startWith(null)
+      ),
+      email: this.personalDetailsForm2.controls.email.valueChanges.pipe(
+        startWith(null)
+      ),
       B16: this.costInputForm1.controls.B16.valueChanges.pipe(startWith(null)),
       B17: this.costInputForm2.controls.B17.valueChanges.pipe(startWith(null)),
       B19: this.costInputForm3.controls.B19.valueChanges.pipe(startWith(null)),
@@ -99,6 +113,8 @@ export class StepperEditableExample implements OnInit {
       next: (latestVal) => {
         this.resultConsolidatedForm = {
           ...this.resultConsolidatedForm,
+          name: latestVal.name,
+          email: latestVal.email,
           B16: latestVal.B16,
           B17: latestVal.B17,
           B19: latestVal.B19,
