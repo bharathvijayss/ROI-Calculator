@@ -21,7 +21,7 @@ export class StepperEditableExample implements OnInit {
     B20: ['', Validators.required],
   });
 
-  resultConsolidatedForm: { [key: string]: number | string | null } = {
+  resultConsolidatedForm: { [key: string]: any } = {
     B18: 5,
     B21: 5,
     B28: 10,
@@ -49,6 +49,21 @@ export class StepperEditableExample implements OnInit {
   ManagersTimeDistributionForm2 = this._formBuilder.group({
     B34: ['', Validators.required],
   });
+
+  botForm = this._formBuilder.group({
+    botUsage: ['', Validators.required],
+  });
+
+  botFields = {
+    H26: 30,
+    H27: 10,
+    H28: 10,
+    H29: 10,
+    H30: 10,
+    H33: 10,
+    H34: 10,
+    H35: 10,
+  };
 
   radioOptions: string[] = ['Yes', 'No'];
   min = 5;
@@ -78,6 +93,7 @@ export class StepperEditableExample implements OnInit {
       B34: this.ManagersTimeDistributionForm2.controls.B34.valueChanges.pipe(
         startWith(null)
       ),
+      bot: this.botForm.controls.botUsage.valueChanges.pipe(startWith(null)),
     };
     combineLatest(CostInputFormobservables).subscribe({
       next: (latestVal) => {
@@ -92,6 +108,12 @@ export class StepperEditableExample implements OnInit {
           B30: latestVal.B30,
           B33: latestVal.B33 === 'Yes' ? 20 : latestVal.B33 === 'No' ? 0 : null,
           B34: latestVal.B34 === 'Yes' ? 10 : latestVal.B34 === 'No' ? 0 : null,
+          bot:
+            latestVal.bot === 'No'
+              ? 0
+              : latestVal.bot === null
+              ? null
+              : this.botFields,
         };
       },
     });
