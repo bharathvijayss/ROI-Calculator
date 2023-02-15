@@ -70,16 +70,81 @@
       </div>
     </form>
   </mat-step>
+  <mat-step [stepControl]="ManagerResourceTDForm1">
+    <form [formGroup]="ManagerResourceTDForm1" class="mt-25">
+      <label id="MRTDF-radio-group-label1">
+        Are you looking for workflow to improve first-right-time?
+      </label>
+      <mat-radio-group
+        aria-labelledby="MRTDF-radio-group-label1"
+        class="example-radio-group"
+        formControlName="B26"
+        color="primary"
+      >
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let option of radioOptions"
+          [value]="option"
+        >
+          {{option}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="ManagerResourceTDForm2">
+    <form [formGroup]="ManagerResourceTDForm2" class="mt-25">
+      <label id="MRTDF-radio-group-label2">
+        Are you looking for use enate to reduce rework?
+      </label>
+      <mat-radio-group
+        aria-labelledby="MRTDF-radio-group-label2"
+        class="example-radio-group"
+        formControlName="B27"
+        color="primary"
+      >
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let option of radioOptions"
+          [value]="option"
+        >
+          {{option}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="ManagerResourceTDForm3">
+    <form [formGroup]="ManagerResourceTDForm3" class="mt-25">
+      <label>Estimated excess capacity carried in operation</label>
+      <mat-slider
+        class="example-margin excess-capacity-slider"
+        [max]="max"
+        [min]="min"
+        [step]="step"
+        [discrete]="true"
+      >
+        <input matSliderThumb formControlName="B30" required />
+      </mat-slider>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <p>You are now done.</p>
-    {{costInputForm.value | json}}
-    <!-- {{costInputForm2.value | json}}
-    {{costInputForm3.value | json}} 
-    {{costInputForm4.value | json}} -->
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
 </mat-stepper>
+{{resultConsolidatedForm | json}}
