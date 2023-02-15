@@ -20,19 +20,14 @@ export class StepperEditableExample implements OnInit {
   costInputForm4 = this._formBuilder.group({
     B20: ['', Validators.required],
   });
-  // costInputForm = this._formBuilder.group({
-  //   B16: new FormControl(),
-  //   B17: new FormControl(),
-  //   B18: new FormControl(5),
-  //   B19: new FormControl(),
-  //   B20: new FormControl(),
-  //   B21: new FormControl(5),
-  // });
+
   resultConsolidatedForm: { [key: string]: number | string | null } = {
     B18: 5,
     B21: 5,
     B28: 10,
     B29: 5,
+    B35: 10,
+    B36: 0,
   };
 
   ManagerResourceTDForm1 = this._formBuilder.group({
@@ -45,6 +40,14 @@ export class StepperEditableExample implements OnInit {
 
   ManagerResourceTDForm3 = this._formBuilder.group({
     B30: [5, Validators.required],
+  });
+
+  ManagersTimeDistributionForm1 = this._formBuilder.group({
+    B33: ['', Validators.required],
+  });
+
+  ManagersTimeDistributionForm2 = this._formBuilder.group({
+    B34: ['', Validators.required],
   });
 
   radioOptions: string[] = ['Yes', 'No'];
@@ -69,6 +72,12 @@ export class StepperEditableExample implements OnInit {
       B30: this.ManagerResourceTDForm3.controls.B30.valueChanges.pipe(
         startWith(5)
       ),
+      B33: this.ManagersTimeDistributionForm1.controls.B33.valueChanges.pipe(
+        startWith(null)
+      ),
+      B34: this.ManagersTimeDistributionForm2.controls.B34.valueChanges.pipe(
+        startWith(null)
+      ),
     };
     combineLatest(CostInputFormobservables).subscribe({
       next: (latestVal) => {
@@ -81,6 +90,8 @@ export class StepperEditableExample implements OnInit {
           B26: latestVal.B26,
           B27: latestVal.B27,
           B30: latestVal.B30,
+          B33: latestVal.B33,
+          B34: latestVal.B34,
         };
       },
     });

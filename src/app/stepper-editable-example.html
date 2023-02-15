@@ -138,6 +138,59 @@
       </div>
     </form>
   </mat-step>
+
+  <mat-step [stepControl]="ManagersTimeDistributionForm1">
+    <form [formGroup]="ManagersTimeDistributionForm1" class="mt-25">
+      <label id="MTDF-radio-group-label1">
+        Will you be using enate to manage inbound email?
+      </label>
+      <mat-radio-group
+        aria-labelledby="MTDF-radio-group-label1"
+        class="example-radio-group"
+        formControlName="B33"
+        color="primary"
+      >
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let option of radioOptions"
+          [value]="option"
+        >
+          {{option}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="ManagersTimeDistributionForm2">
+    <form [formGroup]="ManagersTimeDistributionForm2" class="mt-25">
+      <label id="MTDF-radio-group-label2">
+        Are you looking for enate to deliver Ops reporting?
+      </label>
+      <mat-radio-group
+        aria-labelledby="MTDF-radio-group-label2"
+        class="example-radio-group"
+        formControlName="B34"
+        color="primary"
+      >
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let option of radioOptions"
+          [value]="option"
+        >
+          {{option}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <p>You are now done.</p>
