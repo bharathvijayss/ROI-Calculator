@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -6,6 +6,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { combineLatest, startWith } from 'rxjs';
+import {
+  ChartConfiguration,
+  ChartData,
+  ChartEvent,
+  ChartOptions,
+  ChartType,
+} from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'stepper-editable-example',
@@ -41,6 +49,7 @@ export class StepperEditableExample implements OnInit {
   min = 5;
   max = 30;
   step = 5;
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -177,4 +186,79 @@ export class StepperEditableExample implements OnInit {
     this.roiSummaryForm.controls.lagFromLicensesToSavings.disable();
     //calculate and patch/set the values in the roiSummaryForm
   }
+
+  public barChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    elements: {
+      line: {
+        tension: 0.4,
+      },
+    },
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: {
+      x: {
+        display: true,
+        title: {
+          display: true,
+          text: 'Net Cash position by month',
+          // color: '#911',
+          font: {
+            family: 'Comic Sans MS',
+            size: 20,
+            weight: 'bold',
+            lineHeight: 1.2,
+          },
+          padding: { top: 20, bottom: 0 },
+        },
+      },
+      y: {
+        display: true,
+        title: {
+          display: true,
+          text: 'Net Cash',
+          // color: '#191',
+          font: {
+            family: 'Times',
+            size: 20,
+            weight: 'bold',
+            lineHeight: 1.2,
+          },
+          padding: { top: 30, bottom: 0 },
+        },
+      },
+    },
+    plugins: {
+      legend: { display: false },
+    },
+  };
+  public barChartLabels: string[] = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+  ];
+  public barChartType: ChartType = 'line';
+
+  public barChartData: ChartData<'line'> = {
+    labels: this.barChartLabels,
+    datasets: [
+      {
+        data: [
+          -848, -848, -689, -371, 105, 741, 1535, 2488, 3600, 4871, 6300, 7889,
+        ],
+        label: 'NET CASH',
+        fill: 'start',
+        // backgroundColor: 'forestgreen',
+        // borderColor: 'red'
+      },
+    ],
+  };
 }
