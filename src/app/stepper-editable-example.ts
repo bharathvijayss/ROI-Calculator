@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { combineLatest, startWith } from 'rxjs';
 
 @Component({
@@ -8,60 +13,20 @@ import { combineLatest, startWith } from 'rxjs';
   styleUrls: ['stepper-editable-example.css'],
 })
 export class StepperEditableExample implements OnInit {
-  personalDetailsForm1 = this._formBuilder.group({
-    name: ['', [Validators.required, Validators.minLength(3)]],
-  });
-
-  personalDetailsForm2 = this._formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-  });
-
-  costInputForm1 = this._formBuilder.group({
-    B16: ['', Validators.required],
-  });
-  costInputForm2 = this._formBuilder.group({
-    B17: ['', Validators.required],
-  });
-  costInputForm3 = this._formBuilder.group({
-    B19: ['', Validators.required],
-  });
-  costInputForm4 = this._formBuilder.group({
-    B20: ['', Validators.required],
-  });
-
-  resultConsolidatedForm: { [key: string]: any } = {
-    B18: 5,
-    B21: 5,
-    B28: 10,
-    B29: 5,
-    B35: 10,
-    B36: 0,
-  };
-
-  ManagerResourceTDForm1 = this._formBuilder.group({
-    B26: ['', Validators.required],
-  });
-
-  ManagerResourceTDForm2 = this._formBuilder.group({
-    B27: ['', Validators.required],
-  });
-
-  ManagerResourceTDForm3 = this._formBuilder.group({
-    B30: [5, Validators.required],
-  });
-
-  ManagersTimeDistributionForm1 = this._formBuilder.group({
-    B33: ['', Validators.required],
-  });
-
-  ManagersTimeDistributionForm2 = this._formBuilder.group({
-    B34: ['', Validators.required],
-  });
-
-  botForm = this._formBuilder.group({
-    botUsage: ['', Validators.required],
-  });
-
+  personalDetailsForm1: FormGroup;
+  personalDetailsForm2: FormGroup;
+  costInputForm1: FormGroup;
+  costInputForm2: FormGroup;
+  costInputForm3: FormGroup;
+  costInputForm4: FormGroup;
+  ManagerResourceTDForm1: FormGroup;
+  ManagerResourceTDForm2: FormGroup;
+  ManagerResourceTDForm3: FormGroup;
+  ManagersTimeDistributionForm1: FormGroup;
+  ManagersTimeDistributionForm2: FormGroup;
+  botForm: FormGroup;
+  roiSummaryForm: FormGroup;
+  resultConsolidatedForm: { [key: string]: any };
   botFields = {
     H26: 30,
     H27: 10,
@@ -72,7 +37,6 @@ export class StepperEditableExample implements OnInit {
     H34: 10,
     H35: 10,
   };
-
   radioOptions: string[] = ['Yes', 'No'];
   min = 5;
   max = 30;
@@ -81,6 +45,79 @@ export class StepperEditableExample implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    this.initForms();
+    this.initAndSubscribeFormChanges();
+  }
+
+  initForms() {
+    this.personalDetailsForm1 = this._formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+    });
+    this.personalDetailsForm2 = this._formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
+
+    this.costInputForm1 = this._formBuilder.group({
+      B16: ['', Validators.required],
+    });
+    this.costInputForm2 = this._formBuilder.group({
+      B17: ['', Validators.required],
+    });
+    this.costInputForm3 = this._formBuilder.group({
+      B19: ['', Validators.required],
+    });
+    this.costInputForm4 = this._formBuilder.group({
+      B20: ['', Validators.required],
+    });
+
+    this.resultConsolidatedForm = {
+      B18: 5,
+      B21: 5,
+      B28: 10,
+      B29: 5,
+      B35: 10,
+      B36: 0,
+    };
+
+    this.ManagerResourceTDForm1 = this._formBuilder.group({
+      B26: ['', Validators.required],
+    });
+
+    this.ManagerResourceTDForm2 = this._formBuilder.group({
+      B27: ['', Validators.required],
+    });
+
+    this.ManagerResourceTDForm3 = this._formBuilder.group({
+      B30: [5, Validators.required],
+    });
+
+    this.ManagersTimeDistributionForm1 = this._formBuilder.group({
+      B33: ['', Validators.required],
+    });
+
+    this.ManagersTimeDistributionForm2 = this._formBuilder.group({
+      B34: ['', Validators.required],
+    });
+
+    this.botForm = this._formBuilder.group({
+      botUsage: ['', Validators.required],
+    });
+
+    this.roiSummaryForm = this._formBuilder.group({
+      currentAnnualOperationsCost: ['', Validators.required],
+      projectedAnnualOperationsCost: ['', Validators.required],
+      savingsPercentOfCurrentCost: ['', Validators.required],
+      enateAnnualCost: ['', Validators.required],
+      annualNetSavings: ['', Validators.required],
+      estimatedEffortOptimizationOfTeamLead: ['', Validators.required],
+      estimatedEffortOptimizationOfFte: ['', Validators.required],
+      enateCostOneOffSetup: ['', Validators.required],
+      rolloutPeriod: [24, Validators.required],
+      lagFromLicensesToSavings: [2, Validators.required],
+    });
+  }
+
+  initAndSubscribeFormChanges() {
     const CostInputFormobservables = {
       name: this.personalDetailsForm1.controls.name.valueChanges.pipe(
         startWith(null)
@@ -133,5 +170,11 @@ export class StepperEditableExample implements OnInit {
         };
       },
     });
+  }
+
+  CalculateROI() {
+    this.roiSummaryForm.controls.rolloutPeriod.disable();
+    this.roiSummaryForm.controls.lagFromLicensesToSavings.disable();
+    //calculate and patch/set the values in the roiSummaryForm
   }
 }

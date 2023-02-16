@@ -1,5 +1,5 @@
 <mat-stepper linear #stepper>
-  <mat-step [stepControl]="personalDetailsForm1">
+  <!-- <mat-step [stepControl]="personalDetailsForm1">
     <form [formGroup]="personalDetailsForm1">
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
@@ -16,7 +16,6 @@
       </div>
     </form>
   </mat-step>
-
   <mat-step [stepControl]="personalDetailsForm2">
     <form [formGroup]="personalDetailsForm2">
       <mat-form-field appearance="fill">
@@ -35,7 +34,6 @@
       </div>
     </form>
   </mat-step>
-
   <mat-step [stepControl]="costInputForm1">
     <form [formGroup]="costInputForm1">
       <mat-form-field appearance="fill">
@@ -176,7 +174,6 @@
       </div>
     </form>
   </mat-step>
-
   <mat-step [stepControl]="ManagersTimeDistributionForm1">
     <form [formGroup]="ManagersTimeDistributionForm1" class="mt-25">
       <label id="MTDF-radio-group-label1">
@@ -202,7 +199,6 @@
       </div>
     </form>
   </mat-step>
-
   <mat-step [stepControl]="ManagersTimeDistributionForm2">
     <form [formGroup]="ManagersTimeDistributionForm2" class="mt-25">
       <label id="MTDF-radio-group-label2">
@@ -227,8 +223,7 @@
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
-  </mat-step>
-
+  </mat-step> -->
   <mat-step [stepControl]="botForm">
     <form [formGroup]="botForm" class="mt-25">
       <label id="bot-radio-group-label"> Do you use bots? </label>
@@ -248,15 +243,127 @@
       </mat-radio-group>
       <div>
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button mat-button matStepperNext (click)="CalculateROI()">Next</button>
       </div>
     </form>
   </mat-step>
 
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
+    <div class="d-flex roi-graph-block mt-25">
+      <div style="width: 100%">
+        <h4 class="text-center">ROI Summary</h4>
+        <!-- <div class="d-flex">
+          <div>Current Operations cost (Annual)</div>
+          <div>
+            <input type="text" />
+          </div>
+        </div> -->
+        <form [formGroup]="roiSummaryForm">
+          <mat-form-field appearance="fill">
+            <mat-label>Current Operations cost (Annual)</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="currentAnnualOperationsCost"
+              placeholder="Current Operations cost (Annual)"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Projected Operations Cost (Annual)</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="projectedAnnualOperationsCost"
+              placeholder="Projected Operations Cost (Annual)"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Savings % of current cost</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="savingsPercentOfCurrentCost"
+              placeholder="Savings % of current cost"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Enate Cost (Annual)</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="enateAnnualCost"
+              placeholder="Enate Cost (Annual)"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Net Savings (Annual)</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="annualNetSavings"
+              placeholder="Net Savings (Annual)"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Estimated Effort Optimization of Team Lead</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="estimatedEffortOptimizationOfTeamLead"
+              placeholder="Estimated Effort Optimization of Team Lead"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Estimated Effort Optimization of FTE's</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="estimatedEffortOptimizationOfFte"
+              placeholder="Estimated Effort Optimization of FTE's"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Enate Cost (One-Off Setup)</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="enateCostOneOffSetup"
+              placeholder="Enate Cost (One-Off Setup)"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Rollout period</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="rolloutPeriod"
+              placeholder="Rollout period"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Lag from licenses to savings</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="lagFromLicensesToSavings"
+              placeholder="Lag from licenses to savings"
+              required
+            />
+          </mat-form-field>
+        </form>
+      </div>
+      <div style="background-color: blue; height: 120px; width: 100%"></div>
+    </div>
+    <div class="mt-25">
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
