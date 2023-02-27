@@ -21,8 +21,7 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrls: ['stepper-editable-example.css'],
 })
 export class StepperEditableExample implements OnInit {
-  personalDetailsForm1: FormGroup;
-  personalDetailsForm2: FormGroup;
+  personalDetailsForm: FormGroup;
   costInputForm1: FormGroup;
   costInputForm2: FormGroup;
   costInputForm3: FormGroup;
@@ -59,13 +58,11 @@ export class StepperEditableExample implements OnInit {
   }
 
   initForms() {
-    this.personalDetailsForm1 = this._formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-    });
-    this.personalDetailsForm2 = this._formBuilder.group({
+    this.personalDetailsForm = this._formBuilder.group({
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
     });
-
     this.costInputForm1 = this._formBuilder.group({
       B16: ['', Validators.required],
     });
@@ -128,10 +125,13 @@ export class StepperEditableExample implements OnInit {
 
   initAndSubscribeFormChanges() {
     const CostInputFormobservables = {
-      name: this.personalDetailsForm1.controls.name.valueChanges.pipe(
+      firstName: this.personalDetailsForm.controls.firstName.valueChanges.pipe(
         startWith(null)
       ),
-      email: this.personalDetailsForm2.controls.email.valueChanges.pipe(
+      lastName: this.personalDetailsForm.controls.lastName.valueChanges.pipe(
+        startWith(null)
+      ),
+      email: this.personalDetailsForm.controls.email.valueChanges.pipe(
         startWith(null)
       ),
       B16: this.costInputForm1.controls.B16.valueChanges.pipe(startWith(null)),
@@ -159,7 +159,8 @@ export class StepperEditableExample implements OnInit {
       next: (latestVal) => {
         this.resultConsolidatedForm = {
           ...this.resultConsolidatedForm,
-          name: latestVal.name,
+          firstName: latestVal.firstName,
+          lastName: latestVal.lastName,
           email: latestVal.email,
           B16: latestVal.B16,
           B17: latestVal.B17,
