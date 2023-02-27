@@ -1,5 +1,5 @@
 <mat-stepper linear #stepper>
-  <!-- <mat-step [stepControl]="personalDetailsForm1">
+  <mat-step [stepControl]="personalDetailsForm1">
     <form [formGroup]="personalDetailsForm1">
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
@@ -223,8 +223,8 @@
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
-  </mat-step> -->
-  <!-- <mat-step [stepControl]="botForm">
+  </mat-step>
+  <mat-step [stepControl]="botForm">
     <form [formGroup]="botForm" class="mt-25">
       <label id="bot-radio-group-label"> Do you use bots? </label>
       <mat-radio-group
@@ -246,7 +246,7 @@
         <button mat-button matStepperNext (click)="CalculateROI()">Next</button>
       </div>
     </form>
-  </mat-step> -->
+  </mat-step>
 
   <mat-step>
     <div class="d-flex roi-graph-block mt-25">
