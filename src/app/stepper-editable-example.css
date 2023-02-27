@@ -103,3 +103,13 @@ button {
 .w-75 {
   width: 75%;
 }
+
+.d-flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}

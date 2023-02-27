@@ -24,8 +24,6 @@ export class StepperEditableExample implements OnInit {
   personalDetailsForm: FormGroup;
   costInputForm1: FormGroup;
   costInputForm2: FormGroup;
-  costInputForm3: FormGroup;
-  costInputForm4: FormGroup;
   ManagerResourceTDForm1: FormGroup;
   ManagerResourceTDForm2: FormGroup;
   ManagerResourceTDForm3: FormGroup;
@@ -65,14 +63,10 @@ export class StepperEditableExample implements OnInit {
     });
     this.costInputForm1 = this._formBuilder.group({
       B16: ['', Validators.required],
-    });
-    this.costInputForm2 = this._formBuilder.group({
       B17: ['', Validators.required],
     });
-    this.costInputForm3 = this._formBuilder.group({
+    this.costInputForm2 = this._formBuilder.group({
       B19: ['', Validators.required],
-    });
-    this.costInputForm4 = this._formBuilder.group({
       B20: ['', Validators.required],
     });
 
@@ -135,9 +129,9 @@ export class StepperEditableExample implements OnInit {
         startWith(null)
       ),
       B16: this.costInputForm1.controls.B16.valueChanges.pipe(startWith(null)),
-      B17: this.costInputForm2.controls.B17.valueChanges.pipe(startWith(null)),
-      B19: this.costInputForm3.controls.B19.valueChanges.pipe(startWith(null)),
-      B20: this.costInputForm4.controls.B20.valueChanges.pipe(startWith(null)),
+      B17: this.costInputForm1.controls.B17.valueChanges.pipe(startWith(null)),
+      B19: this.costInputForm2.controls.B19.valueChanges.pipe(startWith(null)),
+      B20: this.costInputForm2.controls.B20.valueChanges.pipe(startWith(null)),
       B26: this.ManagerResourceTDForm1.controls.B26.valueChanges.pipe(
         startWith(null)
       ),

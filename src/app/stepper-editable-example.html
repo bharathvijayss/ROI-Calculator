@@ -1,5 +1,6 @@
 <mat-stepper linear #stepper>
   <mat-step [stepControl]="costInputForm1">
+    <h3 class="text-center">About Your Managers</h3>
     <form [formGroup]="costInputForm1">
       <mat-form-field appearance="fill">
         <mat-label>Total Managers in Operation</mat-label>
@@ -8,6 +9,16 @@
           type="number"
           formControlName="B16"
           placeholder="Total Managers in Operation"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Average Yearly Salary Managers?</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="B17"
+          placeholder="Average Yearly Salary Managers?"
           required
         />
       </mat-form-field>
@@ -20,31 +31,8 @@
     </form>
   </mat-step>
   <mat-step [stepControl]="costInputForm2">
+    <h3 class="text-center">About Your Staff</h3>
     <form [formGroup]="costInputForm2">
-      <mat-form-field appearance="fill">
-        <mat-label>Average Yearly Salary Managers?</mat-label>
-        <input
-          matInput
-          type="number"
-          formControlName="B17"
-          placeholder="Average Yearly Salary Managers?"
-          required
-        />
-      </mat-form-field>
-      <div class="d-flex">
-        <button mat-raised-button matStepperPrevious>
-          <mat-icon fontIcon="arrow_back"></mat-icon>
-          Back
-        </button>
-        <button mat-raised-button matStepperNext class="nextButton">
-          Next
-          <mat-icon fontIcon="arrow_forward"></mat-icon>
-        </button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="costInputForm3">
-    <form [formGroup]="costInputForm3">
       <mat-form-field appearance="fill">
         <mat-label>Total delivery staff in operation</mat-label>
         <input
@@ -55,20 +43,6 @@
           required
         />
       </mat-form-field>
-      <div class="d-flex">
-        <button mat-raised-button matStepperPrevious>
-          <mat-icon fontIcon="arrow_back"></mat-icon>
-          Back
-        </button>
-        <button mat-raised-button matStepperNext class="nextButton">
-          Next
-          <mat-icon fontIcon="arrow_forward"></mat-icon>
-        </button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="costInputForm4">
-    <form [formGroup]="costInputForm4">
       <mat-form-field appearance="fill">
         <mat-label>Average salary delivery staff</mat-label>
         <input
@@ -159,7 +133,7 @@
   </mat-step>
   <mat-step [stepControl]="ManagerResourceTDForm3">
     <form [formGroup]="ManagerResourceTDForm3" class="mt-25">
-      <div class="d-flex-col">
+      <div class="d-flex-col mb-1">
         <label>Estimated excess capacity carried in operation</label>
         <mat-slider
           class="example-margin excess-capacity-slider w-75"
@@ -170,6 +144,10 @@
         >
           <input matSliderThumb formControlName="B30" required />
         </mat-slider>
+        <div class="w-75 d-flex-between">
+          <div>5%</div>
+          <div>30%</div>
+        </div>
       </div>
       <div class="d-flex">
         <button mat-raised-button matStepperPrevious>
