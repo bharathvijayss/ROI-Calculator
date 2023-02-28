@@ -64,18 +64,7 @@ div.d-flex {
   .d-flex.roi-graph-block {
     flex-direction: column-reverse;
   }
-  /* .roiSummary .d-flex {
-    flex-direction: column;
-    gap: 0;
-  } */
 }
-
-/* @media only screen and (max-width: 426px) {
-  .d-flex {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-} */
 
 .text-center {
   text-align: center;
@@ -112,4 +101,12 @@ button {
 
 .mb-1 {
   margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 426px) {
+  .seeResultsBtn {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 1rem !important;
+  }
 }

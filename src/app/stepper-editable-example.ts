@@ -189,17 +189,15 @@ export class StepperEditableExample implements OnInit {
         tension: 0.4,
       },
     },
-    // We use these empty structures as placeholders for dynamic theming.
     scales: {
       x: {
         display: true,
         title: {
           display: true,
           text: 'Net Cash position by month',
-          // color: '#911',
           font: {
             family: 'Comic Sans MS',
-            size: 20,
+            size: 16,
             weight: 'bold',
             lineHeight: 1.2,
           },
@@ -211,14 +209,13 @@ export class StepperEditableExample implements OnInit {
         title: {
           display: true,
           text: 'Net Cash',
-          // color: '#191',
           font: {
             family: 'Times',
-            size: 20,
+            size: 16,
             weight: 'bold',
             lineHeight: 1.2,
           },
-          padding: { top: 30, bottom: 0 },
+          padding: { top: 0, bottom: 0 },
         },
       },
     },
@@ -251,8 +248,6 @@ export class StepperEditableExample implements OnInit {
         ],
         label: 'NET CASH',
         fill: 'start',
-        // backgroundColor: 'forestgreen',
-        // borderColor: 'red'
       },
     ],
   };

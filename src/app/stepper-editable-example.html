@@ -298,7 +298,7 @@
           required
         />
       </mat-form-field>
-      <div class="d-flex">
+      <div class="d-flex seeResultsBtn">
         <button mat-raised-button matStepperPrevious>
           <mat-icon fontIcon="arrow_back"></mat-icon>
           Back
@@ -315,14 +315,7 @@
     <div class="d-flex roi-graph-block mt-25">
       <div style="width: 100%">
         <h4 class="text-center">ROI Summary</h4>
-        <!-- <div class="d-flex">
-          <div>Current Operations cost (Annual)</div>
-          <div>
-            <input type="text" />
-          </div>
-        </div> -->
         <form [formGroup]="roiSummaryForm" class="roiSummary">
-          <!-- <div class="d-flex"> -->
           <mat-form-field appearance="fill">
             <mat-label>Current Operations cost (Annual)</mat-label>
             <input
@@ -343,7 +336,6 @@
               required
             />
           </mat-form-field>
-          <!-- </div> -->
           <mat-form-field appearance="fill">
             <mat-label>Savings % of current cost</mat-label>
             <input
