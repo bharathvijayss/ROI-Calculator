@@ -251,12 +251,7 @@
           <mat-icon fontIcon="arrow_back"></mat-icon>
           Back
         </button>
-        <button
-          mat-raised-button
-          matStepperNext
-          class="nextButton"
-          (click)="CalculateROI()"
-        >
+        <button mat-raised-button matStepperNext class="nextButton">
           Next
           <mat-icon fontIcon="arrow_forward"></mat-icon>
         </button>
@@ -303,7 +298,12 @@
           <mat-icon fontIcon="arrow_back"></mat-icon>
           Back
         </button>
-        <button mat-raised-button matStepperNext class="nextButton">
+        <button
+          mat-raised-button
+          matStepperNext
+          class="nextButton"
+          (click)="CalculateROI()"
+        >
           See Your Results
           <mat-icon fontIcon="arrow_forward"></mat-icon>
         </button>
