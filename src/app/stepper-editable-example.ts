@@ -229,6 +229,7 @@ export class StepperEditableExample implements OnInit {
   botPlusRpaTeamEnateBasedSaving: any;
   botPlusRpaTeamEnateRecurringCost: any;
   botPlusRpaTeamNetOngoingSavings: any;
+  savingsPercentOfCurrentCost: any;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -360,11 +361,12 @@ export class StepperEditableExample implements OnInit {
     this.calculateProjectedOperationsAnnualCost();
 
     //Savings % of Current Cost
+    this.calculateSavingsPercentOfCurrentCost();
 
     this.roiSummaryForm.patchValue({
       currentAnnualOperationsCost: this.currentAnnualOperationsCost,
       projectedAnnualOperationsCost: this.projectedAnnualOperationsCost,
-      // savingsPercentOfCurrentCost: ,
+      savingsPercentOfCurrentCost: this.savingsPercentOfCurrentCost,
       // enateAnnualCost: ,
       // annualNetSavings: ,
       // estimatedEffortOptimizationOfTeamLead: ,
@@ -678,6 +680,13 @@ export class StepperEditableExample implements OnInit {
         .percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_EnateDrivenSavingsInCost +
       this
         .percentOfTimeCapacityManagementOrLoadBalancing_EnateDrivenSavingsInCost;
+  }
+
+  calculateSavingsPercentOfCurrentCost() {
+    this.savingsPercentOfCurrentCost = (
+      (this.totalNetOngoingSavings / this.totalCurrentAnnualOperationCost) *
+      100
+    ).toFixed(2);
   }
 
   //Need to fix this method.
