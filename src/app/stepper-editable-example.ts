@@ -140,6 +140,96 @@ export class StepperEditableExample implements OnInit {
     ],
   };
 
+  NumberofLeadsOrManagersInOperation: any;
+  costOfManager: any;
+  costOfManagerWithHike: any;
+  NumberofDeliveryFTEInOperation: any;
+  costOfFTE: any;
+  costOfFTEWithHike: any;
+  totalCostOfFTEWithHike: any;
+  totalCostOfManagerWithHike: any;
+  currentAnnualOperationsCost: any;
+  projectedAnnualOperationsCost: any;
+  numberOfBotsInProductionCurrently: any;
+  licenseCostPerBotPerYearApprox: any;
+  botSupportTeamSize: any;
+  botSupportTeamAverageFullyLoadedYearlySalary: any;
+  botDevTeamSize: any;
+  botDevTeamAverageFullyLoadedYearlySalary: any;
+  yearlyCostOfbots: any;
+  botSupportTeamCosts: any;
+  rpaDevTeamCosts: any;
+  botsAndRPATeam: any;
+  valueLeakageReductionByEnateHuman = {
+    1: 70,
+    2: 25,
+    3: 70,
+    4: 70,
+    5: 50,
+    6: 60,
+    7: 80,
+    8: 70,
+    9: 60,
+  };
+  valueLeakageReductionByEnateBots = {
+    1: 13,
+    2: 70,
+    3: 70,
+    4: 80,
+    5: 80,
+    6: 60,
+    7: 70,
+    8: 80,
+  };
+  totalCurrentAnnualOperationCost: any;
+  totalNetOngoingSavings: any;
+  percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_ValueLeakageInCostFromUserInput: any;
+  percentOfTimeSpentInReWorkManagement_ValueLeakageInCostFromUserInput: any;
+  percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_ValueLeakageInCostFromUserInput: any;
+  percentOfTimeSpentDoingRootCauseAnalysisForDeviations_ValueLeakageInCostFromUserInput: any;
+  EstimatedExcessCapacityCarriedInOperation_ValueLeakageInCostFromUserInput: any;
+  percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_ValueLeakageInCostFromUserInput: any;
+  percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_ValueLeakageInCostFromUserInput: any;
+  percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_ValueLeakageInCostFromUserInput: any;
+  percentOfTimeCapacityManagementOrLoadBalancing_ValueLeakageInCostFromUserInput: any;
+  totalApproximateFTEResourceTimeDistributionAndApproximateLeadAndManagerTimeDistribution_ValueLeakageInCostFromUserInput: any;
+  percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_EnateDrivenSavingsInCost: any;
+  percentOfTimeSpentInReWorkManagement_EnateDrivenSavingsInCost: any;
+  percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_EnateDrivenSavingsInCost: any;
+  percentOfTimeSpentDoingRootCauseAnalysisForDeviations_EnateDrivenSavingsInCost: any;
+  EstimatedExcessCapacityCarriedInOperation_EnateDrivenSavingsInCost: any;
+  percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_EnateDrivenSavingsInCost: any;
+  percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_EnateDrivenSavingsInCost: any;
+  percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_EnateDrivenSavingsInCost: any;
+  percentOfTimeCapacityManagementOrLoadBalancing_EnateDrivenSavingsInCost: any;
+  totalApproximateFTEResourceTimeDistributionAndApproximateLeadAndManagerTimeDistribution_EnateDrivenSavingsInCost: any;
+  hybridWorkforceTierAmountPerUserPerMonth = 65;
+  humanStaff_EnateRecurringCost: any;
+  humanStaff_NetOngoingSavings: any;
+  currentRobotUtilisationPercent_ValueLeakageInCostFromUserInput: any;
+  teamsTimeSpentOnRcasWhenIssuesOccur_ValueLeakageInCostFromUserInput: any;
+  teamsTimeSpentForRecoveryActionsAndReExecutionSetup_ValueLeakageInCostFromUserInput: any;
+  teamsTimeSpentConsolidatingReportsForBots_ValueLeakageInCostFromUserInput: any;
+  timeSpentOnSupportingBusinessCommunicationsAndUpdates_ValueLeakageInCostFromUserInput: any;
+  botRuntimeOrProductionMetrics_totalValueLeakageInCostFromUserInput: any;
+  avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_ValueLeakageInCostFromUserInput: any;
+  avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_ValueLeakageInCostFromUserInput: any;
+  avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_ValueLeakageInCostFromUserInput: any;
+  botDevelopmentOrManagementMetrics_totalValueLeakageInCostFromUserInput: any;
+  currentRobotUtilisationPercent_EnateDrivenSavingsInCost: any;
+  teamsTimeSpentOnRcasWhenIssuesOccur_EnateDrivenSavingsInCost: any;
+  teamsTimeSpentForRecoveryActionsAndReExecutionSetup_EnateDrivenSavingsInCost: any;
+  teamsTimeSpentConsolidatingReportsForBots_EnateDrivenSavingsInCost: any;
+  timeSpentOnSupportingBusinessCommunicationsAndUpdates_EnateDrivenSavingsInCost: any;
+  botRuntimeOrProductionMetrics_totalEnateDrivenSavingsInCost: any;
+  avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_EnateDrivenSavingsInCost: any;
+  avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_EnateDrivenSavingsInCost: any;
+  avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_EnateDrivenSavingsInCost: any;
+  botDevelopmentOrManagementMetrics_totalEnateDrivenSavingsInCosts: any;
+  botPlusRpaTeamEnateBasedSaving: any;
+  botPlusRpaTeamEnateRecurringCost: any;
+  botPlusRpaTeamNetOngoingSavings: any;
+
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
@@ -148,17 +238,17 @@ export class StepperEditableExample implements OnInit {
 
   initForms() {
     this.personalDetailsForm = this._formBuilder.group({
-      firstName: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
+      firstName: ['bvv', [Validators.required, Validators.minLength(3)]],
+      lastName: ['bvv', [Validators.required, Validators.minLength(3)]],
+      email: ['vbvv@sfs.com', [Validators.required, Validators.email]],
     });
     this.costInputForm1 = this._formBuilder.group({
-      B16: ['', Validators.required],
-      B17: ['', Validators.required],
+      B16: [100, Validators.required],
+      B17: [120000, Validators.required],
     });
     this.costInputForm2 = this._formBuilder.group({
-      B19: ['', Validators.required],
-      B20: ['', Validators.required],
+      B19: [1000, Validators.required],
+      B20: [85000, Validators.required],
     });
 
     this.resultConsolidatedForm = {
@@ -263,246 +353,17 @@ export class StepperEditableExample implements OnInit {
 
   //Need to fix this method.
   calculateAndUpdateROIForm() {
-    const NumberofLeadsOrManagersInOperation = this.resultConsolidatedForm.B16;
-    const costOfManager =
-      NumberofLeadsOrManagersInOperation * this.resultConsolidatedForm.B17;
-    const costOfManagerWithHike =
-      costOfManager * (this.resultConsolidatedForm.B18 / 100);
-    const NumberofDeliveryFTEInOperation = this.resultConsolidatedForm.B19;
-    const costOfFTE =
-      NumberofDeliveryFTEInOperation * this.resultConsolidatedForm.B20;
-    const costOfFTEWithHike =
-      costOfFTE * (this.resultConsolidatedForm.B21 / 100);
-    const totalCostOfFTEWithHike = costOfFTE + costOfFTEWithHike;
-    const totalCostOfManagerWithHike = costOfManager + costOfManagerWithHike;
-    const currentAnnualOperationsCost =
-      totalCostOfManagerWithHike + totalCostOfFTEWithHike;
+    //Current Operations Cost Annual
+    this.calculateCurrentOperationsAnnualCost();
 
-    let numberOfBotsInProductionCurrently = 5;
-    let licenseCostPerBotPerYearApprox = 5000;
-    let botSupportTeamSize = 5;
-    let botSupportTeamAverageFullyLoadedYearlySalary = 5000;
-    let botDevTeamSize = 5;
-    let botDevTeamAverageFullyLoadedYearlySalary = 5000;
-    let yearlyCostOfbots =
-      numberOfBotsInProductionCurrently * licenseCostPerBotPerYearApprox;
-    let botSupportTeamCosts =
-      botSupportTeamSize * botSupportTeamAverageFullyLoadedYearlySalary;
-    let rpaDevTeamCosts =
-      botDevTeamSize * botDevTeamAverageFullyLoadedYearlySalary;
+    //Projected Operations Cost Annaul
+    this.calculateProjectedOperationsAnnualCost();
 
-    let botsAndRPATeam =
-      yearlyCostOfbots + botSupportTeamCosts + rpaDevTeamCosts;
-
-    if (this.resultConsolidatedForm.bot === this.botFieldsWithNoValues) {
-      numberOfBotsInProductionCurrently = 0;
-      licenseCostPerBotPerYearApprox = 0;
-      botSupportTeamSize = 0;
-      botSupportTeamAverageFullyLoadedYearlySalary = 0;
-      botDevTeamSize = 0;
-      botDevTeamAverageFullyLoadedYearlySalary = 0;
-      yearlyCostOfbots = 0;
-      botSupportTeamCosts = 0;
-      rpaDevTeamCosts = 0;
-      botsAndRPATeam = 0;
-    }
-
-    const totalCurrentAnnualOperationCost =
-      currentAnnualOperationsCost + botsAndRPATeam;
-
-    const percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_ValueLeakageInCostFromUserInput =
-      totalCostOfFTEWithHike * (this.resultConsolidatedForm.B26 / 100);
-    const percentOfTimeSpentInReWorkManagement_ValueLeakageInCostFromUserInput =
-      totalCostOfFTEWithHike * (this.resultConsolidatedForm.B27 / 100);
-    const percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_ValueLeakageInCostFromUserInput =
-      totalCostOfFTEWithHike * (this.resultConsolidatedForm.B28 / 100);
-    const percentOfTimeSpentDoingRootCauseAnalysisForDeviations_ValueLeakageInCostFromUserInput =
-      totalCostOfFTEWithHike * (this.resultConsolidatedForm.B29 / 100);
-    const EstimatedExcessCapacityCarriedInOperation_ValueLeakageInCostFromUserInput =
-      totalCostOfFTEWithHike * (this.resultConsolidatedForm.B30 / 100);
-
-    const percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_ValueLeakageInCostFromUserInput =
-      totalCostOfManagerWithHike + this.resultConsolidatedForm.B33 / 100;
-    const percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_ValueLeakageInCostFromUserInput =
-      totalCostOfManagerWithHike + this.resultConsolidatedForm.B34 / 100;
-    const percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_ValueLeakageInCostFromUserInput =
-      totalCostOfManagerWithHike + this.resultConsolidatedForm.B35 / 100;
-    const percentOfTimeCapacityManagementOrLoadBalancing_ValueLeakageInCostFromUserInput =
-      totalCostOfManagerWithHike + this.resultConsolidatedForm.B36 / 100;
-
-    const totalApproximateFTEResourceTimeDistributionAndApproximateLeadAndManagerTimeDistribution_ValueLeakageInCostFromUserInput =
-      percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_ValueLeakageInCostFromUserInput +
-      percentOfTimeSpentInReWorkManagement_ValueLeakageInCostFromUserInput +
-      percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_ValueLeakageInCostFromUserInput +
-      percentOfTimeSpentDoingRootCauseAnalysisForDeviations_ValueLeakageInCostFromUserInput +
-      EstimatedExcessCapacityCarriedInOperation_ValueLeakageInCostFromUserInput +
-      percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_ValueLeakageInCostFromUserInput +
-      percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_ValueLeakageInCostFromUserInput +
-      percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_ValueLeakageInCostFromUserInput +
-      percentOfTimeCapacityManagementOrLoadBalancing_ValueLeakageInCostFromUserInput;
-
-    const valueLeakageReductionByEnateHuman = {
-      1: 70,
-      2: 25,
-      3: 70,
-      4: 70,
-      5: 50,
-      6: 60,
-      7: 80,
-      8: 70,
-      9: 60,
-    };
-
-    const valueLeakageReductionByEnateBots = {
-      1: 13,
-      2: 70,
-      3: 70,
-      4: 80,
-      5: 80,
-      6: 60,
-      7: 70,
-      8: 80,
-    };
-
-    const percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_EnateDrivenSavingsInCost =
-      percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_ValueLeakageInCostFromUserInput *
-      valueLeakageReductionByEnateHuman['1'];
-    const percentOfTimeSpentInReWorkManagement_EnateDrivenSavingsInCost =
-      percentOfTimeSpentInReWorkManagement_ValueLeakageInCostFromUserInput *
-      valueLeakageReductionByEnateHuman['2'];
-    const percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_EnateDrivenSavingsInCost =
-      percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_ValueLeakageInCostFromUserInput *
-      valueLeakageReductionByEnateHuman['3'];
-    const percentOfTimeSpentDoingRootCauseAnalysisForDeviations_EnateDrivenSavingsInCost =
-      percentOfTimeSpentDoingRootCauseAnalysisForDeviations_ValueLeakageInCostFromUserInput *
-      valueLeakageReductionByEnateHuman['4'];
-    const EstimatedExcessCapacityCarriedInOperation_EnateDrivenSavingsInCost =
-      EstimatedExcessCapacityCarriedInOperation_ValueLeakageInCostFromUserInput *
-      valueLeakageReductionByEnateHuman['5'];
-    const percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_EnateDrivenSavingsInCost =
-      percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_ValueLeakageInCostFromUserInput *
-      valueLeakageReductionByEnateHuman['6'];
-    const percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_EnateDrivenSavingsInCost =
-      percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_ValueLeakageInCostFromUserInput *
-      valueLeakageReductionByEnateHuman['7'];
-    const percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_EnateDrivenSavingsInCost =
-      percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_ValueLeakageInCostFromUserInput *
-      valueLeakageReductionByEnateHuman['8'];
-    const percentOfTimeCapacityManagementOrLoadBalancing_EnateDrivenSavingsInCost =
-      percentOfTimeCapacityManagementOrLoadBalancing_ValueLeakageInCostFromUserInput *
-      valueLeakageReductionByEnateHuman['9'];
-
-    const totalApproximateFTEResourceTimeDistributionAndApproximateLeadAndManagerTimeDistribution_EnateDrivenSavingsInCost =
-      percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_EnateDrivenSavingsInCost +
-      percentOfTimeSpentInReWorkManagement_EnateDrivenSavingsInCost +
-      percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_EnateDrivenSavingsInCost +
-      percentOfTimeSpentDoingRootCauseAnalysisForDeviations_EnateDrivenSavingsInCost +
-      EstimatedExcessCapacityCarriedInOperation_EnateDrivenSavingsInCost +
-      percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_EnateDrivenSavingsInCost +
-      percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_EnateDrivenSavingsInCost +
-      percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_EnateDrivenSavingsInCost +
-      percentOfTimeCapacityManagementOrLoadBalancing_EnateDrivenSavingsInCost;
-
-    const hybridWorkforceTierAmountPerUserPerMonth = 65;
-    const humanStaff_EnateRecurringCost =
-      hybridWorkforceTierAmountPerUserPerMonth *
-      12 *
-      (NumberofLeadsOrManagersInOperation + NumberofDeliveryFTEInOperation);
-
-    const humanStaff_NetOngoingSavings =
-      totalApproximateFTEResourceTimeDistributionAndApproximateLeadAndManagerTimeDistribution_EnateDrivenSavingsInCost -
-      humanStaff_EnateRecurringCost;
-
-    const currentRobotUtilisationPercent_ValueLeakageInCostFromUserInput =
-      (100 % -(this.resultConsolidatedForm.bot['H26'] / 100)) *
-      yearlyCostOfbots;
-    const teamsTimeSpentOnRcasWhenIssuesOccur_ValueLeakageInCostFromUserInput =
-      (this.resultConsolidatedForm.bot['H27'] / 100) * botSupportTeamCosts;
-    const teamsTimeSpentForRecoveryActionsAndReExecutionSetup_ValueLeakageInCostFromUserInput =
-      (this.resultConsolidatedForm.bot['H28'] / 100) * botSupportTeamCosts;
-    const teamsTimeSpentConsolidatingReportsForBots_ValueLeakageInCostFromUserInput =
-      (this.resultConsolidatedForm.bot['H29'] / 100) * botSupportTeamCosts;
-    const timeSpentOnSupportingBusinessCommunicationsAndUpdates_ValueLeakageInCostFromUserInput =
-      (this.resultConsolidatedForm.bot['H30'] / 100) * botSupportTeamCosts;
-
-    const botRuntimeOrProductionMetrics_totalValueLeakageInCostFromUserInput =
-      currentRobotUtilisationPercent_ValueLeakageInCostFromUserInput +
-      teamsTimeSpentOnRcasWhenIssuesOccur_ValueLeakageInCostFromUserInput +
-      teamsTimeSpentForRecoveryActionsAndReExecutionSetup_ValueLeakageInCostFromUserInput +
-      teamsTimeSpentConsolidatingReportsForBots_ValueLeakageInCostFromUserInput +
-      timeSpentOnSupportingBusinessCommunicationsAndUpdates_ValueLeakageInCostFromUserInput;
-
-    const avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_ValueLeakageInCostFromUserInput =
-      (this.resultConsolidatedForm.bot['H33'] / 100) * rpaDevTeamCosts;
-    const avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_ValueLeakageInCostFromUserInput =
-      (this.resultConsolidatedForm.bot['H34'] / 100) * rpaDevTeamCosts;
-    const avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_ValueLeakageInCostFromUserInput =
-      (this.resultConsolidatedForm.bot['H35'] / 100) * rpaDevTeamCosts;
-
-    const botDevelopmentOrManagementMetrics_totalValueLeakageInCostFromUserInput =
-      avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_ValueLeakageInCostFromUserInput +
-      avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_ValueLeakageInCostFromUserInput +
-      avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_ValueLeakageInCostFromUserInput;
-
-    const currentRobotUtilisationPercent_EnateDrivenSavingsInCost =
-      (valueLeakageReductionByEnateBots['1'] / 100 -
-        this.resultConsolidatedForm.bot['H26'] / 100) *
-      yearlyCostOfbots;
-    const teamsTimeSpentOnRcasWhenIssuesOccur_EnateDrivenSavingsInCost =
-      (valueLeakageReductionByEnateBots['2'] / 100) *
-      teamsTimeSpentOnRcasWhenIssuesOccur_ValueLeakageInCostFromUserInput;
-    const teamsTimeSpentForRecoveryActionsAndReExecutionSetup_EnateDrivenSavingsInCost =
-      (valueLeakageReductionByEnateBots['3'] / 100) *
-      teamsTimeSpentForRecoveryActionsAndReExecutionSetup_ValueLeakageInCostFromUserInput;
-    const teamsTimeSpentConsolidatingReportsForBots_EnateDrivenSavingsInCost =
-      (valueLeakageReductionByEnateBots['4'] / 100) *
-      teamsTimeSpentConsolidatingReportsForBots_ValueLeakageInCostFromUserInput;
-    const timeSpentOnSupportingBusinessCommunicationsAndUpdates_EnateDrivenSavingsInCost =
-      (valueLeakageReductionByEnateBots['5'] / 100) *
-      timeSpentOnSupportingBusinessCommunicationsAndUpdates_ValueLeakageInCostFromUserInput;
-
-    const botRuntimeOrProductionMetrics_totalEnateDrivenSavingsInCost =
-      currentRobotUtilisationPercent_EnateDrivenSavingsInCost +
-      teamsTimeSpentOnRcasWhenIssuesOccur_EnateDrivenSavingsInCost +
-      teamsTimeSpentForRecoveryActionsAndReExecutionSetup_EnateDrivenSavingsInCost +
-      teamsTimeSpentConsolidatingReportsForBots_EnateDrivenSavingsInCost +
-      timeSpentOnSupportingBusinessCommunicationsAndUpdates_EnateDrivenSavingsInCost;
-
-    const avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_EnateDrivenSavingsInCost =
-      (valueLeakageReductionByEnateBots['6'] / 100) *
-      avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_ValueLeakageInCostFromUserInput;
-    const avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_EnateDrivenSavingsInCost =
-      (valueLeakageReductionByEnateBots['7'] / 100) *
-      avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_ValueLeakageInCostFromUserInput;
-    const avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_EnateDrivenSavingsInCost =
-      (valueLeakageReductionByEnateBots['8'] / 100) *
-      avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_ValueLeakageInCostFromUserInput;
-
-    const botDevelopmentOrManagementMetrics_totalEnateDrivenSavingsInCosts =
-      avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_EnateDrivenSavingsInCost +
-      avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_EnateDrivenSavingsInCost +
-      avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_EnateDrivenSavingsInCost;
-
-    const botPlusRpaTeamEnateBasedSaving =
-      botRuntimeOrProductionMetrics_totalEnateDrivenSavingsInCost +
-      botDevelopmentOrManagementMetrics_totalEnateDrivenSavingsInCosts;
-
-    const botPlusRpaTeamEnateRecurringCost =
-      12 *
-      hybridWorkforceTierAmountPerUserPerMonth *
-      numberOfBotsInProductionCurrently;
-
-    const botPlusRpaTeamNetOngoingSavings =
-      botPlusRpaTeamEnateBasedSaving - botPlusRpaTeamEnateRecurringCost;
-    const totalNetOngoingSavings =
-      humanStaff_NetOngoingSavings + botPlusRpaTeamNetOngoingSavings;
-
-    const projectedAnnualOperationsCost =
-      totalCurrentAnnualOperationCost - totalNetOngoingSavings;
+    //Savings % of Current Cost
 
     this.roiSummaryForm.patchValue({
-      currentAnnualOperationsCost: currentAnnualOperationsCost,
-      projectedAnnualOperationsCost: projectedAnnualOperationsCost,
+      currentAnnualOperationsCost: this.currentAnnualOperationsCost,
+      projectedAnnualOperationsCost: this.projectedAnnualOperationsCost,
       // savingsPercentOfCurrentCost: ,
       // enateAnnualCost: ,
       // annualNetSavings: ,
@@ -510,6 +371,313 @@ export class StepperEditableExample implements OnInit {
       // estimatedEffortOptimizationOfFte: ,
       // enateCostOneOffSetup:
     });
+  }
+
+  calculateCurrentOperationsAnnualCost() {
+    this.NumberofLeadsOrManagersInOperation = this.resultConsolidatedForm.B16;
+    this.costOfManager =
+      this.NumberofLeadsOrManagersInOperation * this.resultConsolidatedForm.B17;
+    this.costOfManagerWithHike =
+      this.costOfManager * (this.resultConsolidatedForm.B18 / 100);
+    this.NumberofDeliveryFTEInOperation = this.resultConsolidatedForm.B19;
+    this.costOfFTE =
+      this.NumberofDeliveryFTEInOperation * this.resultConsolidatedForm.B20;
+    this.costOfFTEWithHike =
+      this.costOfFTE * (this.resultConsolidatedForm.B21 / 100);
+    this.totalCostOfFTEWithHike = this.costOfFTE + this.costOfFTEWithHike;
+    this.totalCostOfManagerWithHike =
+      this.costOfManager + this.costOfManagerWithHike;
+    this.currentAnnualOperationsCost =
+      this.totalCostOfManagerWithHike + this.totalCostOfFTEWithHike;
+  }
+
+  calculateProjectedOperationsAnnualCost() {
+    this.calculateCurrentCostOfRpaTeam();
+    this.calculateCurrentCostHumanWorkForce();
+
+    this.humanStaff_EnateRecurringCost =
+      this.hybridWorkforceTierAmountPerUserPerMonth *
+      12 *
+      (this.NumberofLeadsOrManagersInOperation +
+        this.NumberofDeliveryFTEInOperation);
+
+    this.humanStaff_NetOngoingSavings =
+      this
+        .totalApproximateFTEResourceTimeDistributionAndApproximateLeadAndManagerTimeDistribution_EnateDrivenSavingsInCost -
+      this.humanStaff_EnateRecurringCost;
+
+    this.totalNetOngoingSavings =
+      this.humanStaff_NetOngoingSavings + this.botPlusRpaTeamNetOngoingSavings;
+
+    this.projectedAnnualOperationsCost =
+      this.totalCurrentAnnualOperationCost - this.totalNetOngoingSavings;
+  }
+
+  calculateCurrentCostOfRpaTeam() {
+    if (this.resultConsolidatedForm.bot === this.botFieldsWithNoValues) {
+      this.numberOfBotsInProductionCurrently = 0;
+      this.botSupportTeamSize = 0;
+      this.botDevTeamSize = 0;
+    } else {
+      this.numberOfBotsInProductionCurrently = 5;
+      this.botSupportTeamSize = 5;
+      this.botDevTeamSize = 5;
+    }
+
+    this.licenseCostPerBotPerYearApprox = 5000;
+    this.botSupportTeamAverageFullyLoadedYearlySalary = 5000;
+    this.botDevTeamAverageFullyLoadedYearlySalary = 5000;
+
+    this.yearlyCostOfbots =
+      this.numberOfBotsInProductionCurrently *
+      this.licenseCostPerBotPerYearApprox;
+    this.botSupportTeamCosts =
+      this.botSupportTeamSize *
+      this.botSupportTeamAverageFullyLoadedYearlySalary;
+    this.rpaDevTeamCosts =
+      this.botDevTeamSize * this.botDevTeamAverageFullyLoadedYearlySalary;
+    this.botsAndRPATeam =
+      this.yearlyCostOfbots + this.botSupportTeamCosts + this.rpaDevTeamCosts;
+
+    this.currentRobotUtilisationPercent_ValueLeakageInCostFromUserInput =
+      (100 % -(this.resultConsolidatedForm.bot['H26'] / 100)) *
+      this.yearlyCostOfbots;
+    this.teamsTimeSpentOnRcasWhenIssuesOccur_ValueLeakageInCostFromUserInput =
+      (this.resultConsolidatedForm.bot['H27'] / 100) * this.botSupportTeamCosts;
+    this.teamsTimeSpentForRecoveryActionsAndReExecutionSetup_ValueLeakageInCostFromUserInput =
+      (this.resultConsolidatedForm.bot['H28'] / 100) * this.botSupportTeamCosts;
+    this.teamsTimeSpentConsolidatingReportsForBots_ValueLeakageInCostFromUserInput =
+      (this.resultConsolidatedForm.bot['H29'] / 100) * this.botSupportTeamCosts;
+    this.timeSpentOnSupportingBusinessCommunicationsAndUpdates_ValueLeakageInCostFromUserInput =
+      (this.resultConsolidatedForm.bot['H30'] / 100) * this.botSupportTeamCosts;
+
+    this.botRuntimeOrProductionMetrics_totalValueLeakageInCostFromUserInput =
+      this.currentRobotUtilisationPercent_ValueLeakageInCostFromUserInput +
+      this.teamsTimeSpentOnRcasWhenIssuesOccur_ValueLeakageInCostFromUserInput +
+      this
+        .teamsTimeSpentForRecoveryActionsAndReExecutionSetup_ValueLeakageInCostFromUserInput +
+      this
+        .teamsTimeSpentConsolidatingReportsForBots_ValueLeakageInCostFromUserInput +
+      this
+        .timeSpentOnSupportingBusinessCommunicationsAndUpdates_ValueLeakageInCostFromUserInput;
+
+    this.avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_ValueLeakageInCostFromUserInput =
+      (this.resultConsolidatedForm.bot['H33'] / 100) * this.rpaDevTeamCosts;
+    this.avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_ValueLeakageInCostFromUserInput =
+      (this.resultConsolidatedForm.bot['H34'] / 100) * this.rpaDevTeamCosts;
+    this.avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_ValueLeakageInCostFromUserInput =
+      (this.resultConsolidatedForm.bot['H35'] / 100) * this.rpaDevTeamCosts;
+
+    this.botDevelopmentOrManagementMetrics_totalValueLeakageInCostFromUserInput =
+      this
+        .avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_ValueLeakageInCostFromUserInput +
+      this
+        .avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_ValueLeakageInCostFromUserInput +
+      this
+        .avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_ValueLeakageInCostFromUserInput;
+
+    this.currentRobotUtilisationPercent_EnateDrivenSavingsInCost =
+      (this.valueLeakageReductionByEnateBots['1'] / 100 -
+        this.resultConsolidatedForm.bot['H26'] / 100) *
+      this.yearlyCostOfbots;
+    this.teamsTimeSpentOnRcasWhenIssuesOccur_EnateDrivenSavingsInCost =
+      (this.valueLeakageReductionByEnateBots['2'] / 100) *
+      this.teamsTimeSpentOnRcasWhenIssuesOccur_ValueLeakageInCostFromUserInput;
+    this.teamsTimeSpentForRecoveryActionsAndReExecutionSetup_EnateDrivenSavingsInCost =
+      (this.valueLeakageReductionByEnateBots['3'] / 100) *
+      this
+        .teamsTimeSpentForRecoveryActionsAndReExecutionSetup_ValueLeakageInCostFromUserInput;
+    this.teamsTimeSpentConsolidatingReportsForBots_EnateDrivenSavingsInCost =
+      (this.valueLeakageReductionByEnateBots['4'] / 100) *
+      this
+        .teamsTimeSpentConsolidatingReportsForBots_ValueLeakageInCostFromUserInput;
+    this.timeSpentOnSupportingBusinessCommunicationsAndUpdates_EnateDrivenSavingsInCost =
+      (this.valueLeakageReductionByEnateBots['5'] / 100) *
+      this
+        .timeSpentOnSupportingBusinessCommunicationsAndUpdates_ValueLeakageInCostFromUserInput;
+
+    this.botRuntimeOrProductionMetrics_totalEnateDrivenSavingsInCost =
+      this.currentRobotUtilisationPercent_EnateDrivenSavingsInCost +
+      this.teamsTimeSpentOnRcasWhenIssuesOccur_EnateDrivenSavingsInCost +
+      this
+        .teamsTimeSpentForRecoveryActionsAndReExecutionSetup_EnateDrivenSavingsInCost +
+      this.teamsTimeSpentConsolidatingReportsForBots_EnateDrivenSavingsInCost +
+      this
+        .timeSpentOnSupportingBusinessCommunicationsAndUpdates_EnateDrivenSavingsInCost;
+
+    this.avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_EnateDrivenSavingsInCost =
+      (this.valueLeakageReductionByEnateBots['6'] / 100) *
+      this
+        .avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_ValueLeakageInCostFromUserInput;
+    this.avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_EnateDrivenSavingsInCost =
+      (this.valueLeakageReductionByEnateBots['7'] / 100) *
+      this
+        .avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_ValueLeakageInCostFromUserInput;
+    this.avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_EnateDrivenSavingsInCost =
+      (this.valueLeakageReductionByEnateBots['8'] / 100) *
+      this
+        .avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_ValueLeakageInCostFromUserInput;
+
+    this.botDevelopmentOrManagementMetrics_totalEnateDrivenSavingsInCosts =
+      this
+        .avgPercentOfDevelopmentTeamsTimeSpentOnPlanning_EnateDrivenSavingsInCost +
+      this
+        .avgPercentOfDevelopmentTeamsTimeSpentOnExceptionHandling_EnateDrivenSavingsInCost +
+      this
+        .avgPercentOfDevelopmentTeamsTimeSpentOnHandingOffCode_EnateDrivenSavingsInCost;
+
+    this.botPlusRpaTeamEnateBasedSaving =
+      this.botRuntimeOrProductionMetrics_totalEnateDrivenSavingsInCost +
+      this.botDevelopmentOrManagementMetrics_totalEnateDrivenSavingsInCosts;
+
+    this.botPlusRpaTeamEnateRecurringCost =
+      12 *
+      this.hybridWorkforceTierAmountPerUserPerMonth *
+      this.numberOfBotsInProductionCurrently;
+
+    this.botPlusRpaTeamNetOngoingSavings =
+      this.botPlusRpaTeamEnateBasedSaving -
+      this.botPlusRpaTeamEnateRecurringCost;
+  }
+
+  calculateCurrentCostHumanWorkForce() {
+    this.totalCurrentAnnualOperationCost =
+      this.currentAnnualOperationsCost + this.botsAndRPATeam;
+
+    this.percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_ValueLeakageInCostFromUserInput =
+      Math.round(
+        this.totalCostOfFTEWithHike * (this.resultConsolidatedForm.B26 / 100)
+      );
+    this.percentOfTimeSpentInReWorkManagement_ValueLeakageInCostFromUserInput =
+      Math.round(
+        this.totalCostOfFTEWithHike * (this.resultConsolidatedForm.B27 / 100)
+      );
+    this.percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_ValueLeakageInCostFromUserInput =
+      Math.round(
+        this.totalCostOfFTEWithHike * (this.resultConsolidatedForm.B28 / 100)
+      );
+    this.percentOfTimeSpentDoingRootCauseAnalysisForDeviations_ValueLeakageInCostFromUserInput =
+      Math.round(
+        this.totalCostOfFTEWithHike * (this.resultConsolidatedForm.B29 / 100)
+      );
+    this.EstimatedExcessCapacityCarriedInOperation_ValueLeakageInCostFromUserInput =
+      Math.round(
+        this.totalCostOfFTEWithHike * (this.resultConsolidatedForm.B30 / 100)
+      );
+
+    this.percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_ValueLeakageInCostFromUserInput =
+      Math.round(
+        this.totalCostOfManagerWithHike *
+          (this.resultConsolidatedForm.B33 / 100)
+      );
+    this.percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_ValueLeakageInCostFromUserInput =
+      Math.round(
+        this.totalCostOfManagerWithHike *
+          (this.resultConsolidatedForm.B34 / 100)
+      );
+    this.percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_ValueLeakageInCostFromUserInput =
+      Math.round(
+        this.totalCostOfManagerWithHike *
+          (this.resultConsolidatedForm.B35 / 100)
+      );
+    this.percentOfTimeCapacityManagementOrLoadBalancing_ValueLeakageInCostFromUserInput =
+      Math.round(
+        this.totalCostOfManagerWithHike *
+          (this.resultConsolidatedForm.B36 / 100)
+      );
+
+    this.totalApproximateFTEResourceTimeDistributionAndApproximateLeadAndManagerTimeDistribution_ValueLeakageInCostFromUserInput =
+      this
+        .percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_ValueLeakageInCostFromUserInput +
+      this
+        .percentOfTimeSpentInReWorkManagement_ValueLeakageInCostFromUserInput +
+      this
+        .percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_ValueLeakageInCostFromUserInput +
+      this
+        .percentOfTimeSpentDoingRootCauseAnalysisForDeviations_ValueLeakageInCostFromUserInput +
+      this
+        .EstimatedExcessCapacityCarriedInOperation_ValueLeakageInCostFromUserInput +
+      this
+        .percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_ValueLeakageInCostFromUserInput +
+      this
+        .percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_ValueLeakageInCostFromUserInput +
+      this
+        .percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_ValueLeakageInCostFromUserInput +
+      this
+        .percentOfTimeCapacityManagementOrLoadBalancing_ValueLeakageInCostFromUserInput;
+
+    this.percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_EnateDrivenSavingsInCost =
+      Math.round(
+        this
+          .percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_ValueLeakageInCostFromUserInput *
+          (this.valueLeakageReductionByEnateHuman['1'] / 100)
+      );
+    this.percentOfTimeSpentInReWorkManagement_EnateDrivenSavingsInCost =
+      Math.round(
+        this
+          .percentOfTimeSpentInReWorkManagement_ValueLeakageInCostFromUserInput *
+          (this.valueLeakageReductionByEnateHuman['2'] / 100)
+      );
+    this.percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_EnateDrivenSavingsInCost =
+      Math.round(
+        this
+          .percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_ValueLeakageInCostFromUserInput *
+          (this.valueLeakageReductionByEnateHuman['3'] / 100)
+      );
+    this.percentOfTimeSpentDoingRootCauseAnalysisForDeviations_EnateDrivenSavingsInCost =
+      Math.round(
+        this
+          .percentOfTimeSpentDoingRootCauseAnalysisForDeviations_ValueLeakageInCostFromUserInput *
+          (this.valueLeakageReductionByEnateHuman['4'] / 100)
+      );
+    this.EstimatedExcessCapacityCarriedInOperation_EnateDrivenSavingsInCost =
+      Math.round(
+        this
+          .EstimatedExcessCapacityCarriedInOperation_ValueLeakageInCostFromUserInput *
+          (this.valueLeakageReductionByEnateHuman['5'] / 100)
+      );
+    this.percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_EnateDrivenSavingsInCost =
+      Math.round(
+        this
+          .percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_ValueLeakageInCostFromUserInput *
+          (this.valueLeakageReductionByEnateHuman['6'] / 100)
+      );
+    this.percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_EnateDrivenSavingsInCost =
+      Math.round(
+        this
+          .percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_ValueLeakageInCostFromUserInput *
+          (this.valueLeakageReductionByEnateHuman['7'] / 100)
+      );
+    this.percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_EnateDrivenSavingsInCost =
+      Math.round(
+        this
+          .percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_ValueLeakageInCostFromUserInput *
+          (this.valueLeakageReductionByEnateHuman['8'] / 100)
+      );
+    this.percentOfTimeCapacityManagementOrLoadBalancing_EnateDrivenSavingsInCost =
+      Math.round(
+        this
+          .percentOfTimeCapacityManagementOrLoadBalancing_ValueLeakageInCostFromUserInput *
+          (this.valueLeakageReductionByEnateHuman['9'] / 100)
+      );
+
+    this.totalApproximateFTEResourceTimeDistributionAndApproximateLeadAndManagerTimeDistribution_EnateDrivenSavingsInCost =
+      this
+        .percentOfTimeSpentInProcessAndSOPsToEnsureFirstTimeCorrectness_EnateDrivenSavingsInCost +
+      this.percentOfTimeSpentInReWorkManagement_EnateDrivenSavingsInCost +
+      this
+        .percentOfEffortSpentTrackingAndManagingContinuityBetweenActivities_EnateDrivenSavingsInCost +
+      this
+        .percentOfTimeSpentDoingRootCauseAnalysisForDeviations_EnateDrivenSavingsInCost +
+      this.EstimatedExcessCapacityCarriedInOperation_EnateDrivenSavingsInCost +
+      this
+        .percentOfTimeSpentInMailBoxManagementAndWorkAllocationToTeam_EnateDrivenSavingsInCost +
+      this
+        .percentOfTimeSpentCreatingReportsAndCollatingMIAcrossOperation_EnateDrivenSavingsInCost +
+      this
+        .percentOfTimeSpentPrioritisingWorkManagingEscalationsAndSLAMgmt_EnateDrivenSavingsInCost +
+      this
+        .percentOfTimeCapacityManagementOrLoadBalancing_EnateDrivenSavingsInCost;
   }
 
   //Need to fix this method.
