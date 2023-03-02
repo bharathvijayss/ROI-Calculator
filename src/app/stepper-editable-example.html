@@ -1,40 +1,6 @@
 <mat-stepper linear #stepper>
-  <mat-step [stepControl]="personalDetailsForm1">
-    <form [formGroup]="personalDetailsForm1">
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input
-          matInput
-          type="text"
-          formControlName="name"
-          placeholder="Name"
-          required
-        />
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="personalDetailsForm2">
-    <form [formGroup]="personalDetailsForm2">
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input
-          matInput
-          type="email"
-          formControlName="email"
-          placeholder="Email"
-          required
-        />
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
   <mat-step [stepControl]="costInputForm1">
+    <h3 class="text-center">About Your Managers</h3>
     <form [formGroup]="costInputForm1">
       <mat-form-field appearance="fill">
         <mat-label>Total Managers in Operation</mat-label>
@@ -46,14 +12,6 @@
           required
         />
       </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="costInputForm2">
-    <form [formGroup]="costInputForm2">
       <mat-form-field appearance="fill">
         <mat-label>Average Yearly Salary Managers?</mat-label>
         <input
@@ -64,14 +22,17 @@
           required
         />
       </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+      <div class="d-flex">
+        <button mat-raised-button matStepperNext class="nextButton">
+          Next
+          <mat-icon fontIcon="arrow_forward"></mat-icon>
+        </button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="costInputForm3">
-    <form [formGroup]="costInputForm3">
+  <mat-step [stepControl]="costInputForm2">
+    <h3 class="text-center">About Your Staff</h3>
+    <form [formGroup]="costInputForm2">
       <mat-form-field appearance="fill">
         <mat-label>Total delivery staff in operation</mat-label>
         <input
@@ -82,14 +43,6 @@
           required
         />
       </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="costInputForm4">
-    <form [formGroup]="costInputForm4">
       <mat-form-field appearance="fill">
         <mat-label>Average salary delivery staff</mat-label>
         <input
@@ -100,150 +53,260 @@
           required
         />
       </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+      <div class="d-flex">
+        <button mat-raised-button matStepperPrevious>
+          <mat-icon fontIcon="arrow_back"></mat-icon>
+          Back
+        </button>
+        <button mat-raised-button matStepperNext class="nextButton">
+          Next
+          <mat-icon fontIcon="arrow_forward"></mat-icon>
+        </button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="ManagerResourceTDForm1">
     <form [formGroup]="ManagerResourceTDForm1" class="mt-25">
-      <label id="MRTDF-radio-group-label1">
-        Are you looking for workflow to improve first-right-time?
-      </label>
-      <mat-radio-group
-        aria-labelledby="MRTDF-radio-group-label1"
-        class="example-radio-group"
-        formControlName="B26"
-        color="primary"
-      >
-        <mat-radio-button
-          class="example-radio-button"
-          *ngFor="let option of radioOptions"
-          [value]="option"
+      <div class="d-flex-col">
+        <label id="MRTDF-radio-group-label1">
+          Are you looking for workflow to improve first-right-time?
+        </label>
+        <mat-radio-group
+          aria-labelledby="MRTDF-radio-group-label1"
+          class="example-radio-group"
+          formControlName="B26"
+          color="primary"
         >
-          {{option}}
-        </mat-radio-button>
-      </mat-radio-group>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let option of radioOptions"
+            [value]="option"
+          >
+            {{option}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="d-flex">
+        <button mat-raised-button matStepperPrevious>
+          <mat-icon fontIcon="arrow_back"></mat-icon>
+          Back
+        </button>
+        <button mat-raised-button matStepperNext class="nextButton">
+          Next
+          <mat-icon fontIcon="arrow_forward"></mat-icon>
+        </button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="ManagerResourceTDForm2">
     <form [formGroup]="ManagerResourceTDForm2" class="mt-25">
-      <label id="MRTDF-radio-group-label2">
-        Are you looking for use enate to reduce rework?
-      </label>
-      <mat-radio-group
-        aria-labelledby="MRTDF-radio-group-label2"
-        class="example-radio-group"
-        formControlName="B27"
-        color="primary"
-      >
-        <mat-radio-button
-          class="example-radio-button"
-          *ngFor="let option of radioOptions"
-          [value]="option"
+      <div class="d-flex-col">
+        <label id="MRTDF-radio-group-label2">
+          Are you looking for use enate to reduce rework?
+        </label>
+        <mat-radio-group
+          aria-labelledby="MRTDF-radio-group-label2"
+          class="example-radio-group"
+          formControlName="B27"
+          color="primary"
         >
-          {{option}}
-        </mat-radio-button>
-      </mat-radio-group>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let option of radioOptions"
+            [value]="option"
+          >
+            {{option}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="d-flex">
+        <button mat-raised-button matStepperPrevious>
+          <mat-icon fontIcon="arrow_back"></mat-icon>
+          Back
+        </button>
+        <button mat-raised-button matStepperNext class="nextButton">
+          Next
+          <mat-icon fontIcon="arrow_forward"></mat-icon>
+        </button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="ManagerResourceTDForm3">
     <form [formGroup]="ManagerResourceTDForm3" class="mt-25">
-      <label>Estimated excess capacity carried in operation</label>
-      <mat-slider
-        class="example-margin excess-capacity-slider"
-        [max]="max"
-        [min]="min"
-        [step]="step"
-        [discrete]="true"
-      >
-        <input matSliderThumb formControlName="B30" required />
-      </mat-slider>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+      <div class="d-flex-col mb-1">
+        <label>Estimated excess capacity carried in operation</label>
+        <mat-slider
+          class="example-margin excess-capacity-slider w-75"
+          [max]="max"
+          [min]="min"
+          [step]="step"
+          [discrete]="true"
+        >
+          <input matSliderThumb formControlName="B30" required />
+        </mat-slider>
+        <div class="w-75 d-flex-between">
+          <div>5%</div>
+          <div>30%</div>
+        </div>
+      </div>
+      <div class="d-flex">
+        <button mat-raised-button matStepperPrevious>
+          <mat-icon fontIcon="arrow_back"></mat-icon>
+          Back
+        </button>
+        <button mat-raised-button matStepperNext class="nextButton">
+          Next
+          <mat-icon fontIcon="arrow_forward"></mat-icon>
+        </button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="ManagersTimeDistributionForm1">
     <form [formGroup]="ManagersTimeDistributionForm1" class="mt-25">
-      <label id="MTDF-radio-group-label1">
-        Will you be using enate to manage inbound email?
-      </label>
-      <mat-radio-group
-        aria-labelledby="MTDF-radio-group-label1"
-        class="example-radio-group"
-        formControlName="B33"
-        color="primary"
-      >
-        <mat-radio-button
-          class="example-radio-button"
-          *ngFor="let option of radioOptions"
-          [value]="option"
+      <div class="d-flex-col">
+        <label id="MTDF-radio-group-label1">
+          Will you be using enate to manage inbound email?
+        </label>
+        <mat-radio-group
+          aria-labelledby="MTDF-radio-group-label1"
+          class="example-radio-group"
+          formControlName="B33"
+          color="primary"
         >
-          {{option}}
-        </mat-radio-button>
-      </mat-radio-group>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let option of radioOptions"
+            [value]="option"
+          >
+            {{option}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="d-flex">
+        <button mat-raised-button matStepperPrevious>
+          <mat-icon fontIcon="arrow_back"></mat-icon>
+          Back
+        </button>
+        <button mat-raised-button matStepperNext class="nextButton">
+          Next
+          <mat-icon fontIcon="arrow_forward"></mat-icon>
+        </button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="ManagersTimeDistributionForm2">
     <form [formGroup]="ManagersTimeDistributionForm2" class="mt-25">
-      <label id="MTDF-radio-group-label2">
-        Are you looking for enate to deliver Ops reporting?
-      </label>
-      <mat-radio-group
-        aria-labelledby="MTDF-radio-group-label2"
-        class="example-radio-group"
-        formControlName="B34"
-        color="primary"
-      >
-        <mat-radio-button
-          class="example-radio-button"
-          *ngFor="let option of radioOptions"
-          [value]="option"
+      <div class="d-flex-col">
+        <label id="MTDF-radio-group-label2">
+          Are you looking for enate to deliver Ops reporting?
+        </label>
+        <mat-radio-group
+          aria-labelledby="MTDF-radio-group-label2"
+          class="example-radio-group"
+          formControlName="B34"
+          color="primary"
         >
-          {{option}}
-        </mat-radio-button>
-      </mat-radio-group>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let option of radioOptions"
+            [value]="option"
+          >
+            {{option}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="d-flex">
+        <button mat-raised-button matStepperPrevious>
+          <mat-icon fontIcon="arrow_back"></mat-icon>
+          Back
+        </button>
+        <button mat-raised-button matStepperNext class="nextButton">
+          Next
+          <mat-icon fontIcon="arrow_forward"></mat-icon>
+        </button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="botForm">
     <form [formGroup]="botForm" class="mt-25">
-      <label id="bot-radio-group-label"> Do you use bots? </label>
-      <mat-radio-group
-        aria-labelledby="bot-radio-group-label"
-        class="example-radio-group"
-        formControlName="botUsage"
-        color="primary"
-      >
-        <mat-radio-button
-          class="example-radio-button"
-          *ngFor="let option of radioOptions"
-          [value]="option"
+      <div class="d-flex-col">
+        <label id="bot-radio-group-label"> Do you use bots? </label>
+        <mat-radio-group
+          aria-labelledby="bot-radio-group-label"
+          class="example-radio-group"
+          formControlName="botUsage"
+          color="primary"
         >
-          {{option}}
-        </mat-radio-button>
-      </mat-radio-group>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext (click)="CalculateROI()">Next</button>
+          <mat-radio-button
+            class="example-radio-button"
+            *ngFor="let option of radioOptions"
+            [value]="option"
+          >
+            {{option}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="d-flex">
+        <button mat-raised-button matStepperPrevious>
+          <mat-icon fontIcon="arrow_back"></mat-icon>
+          Back
+        </button>
+        <button mat-raised-button matStepperNext class="nextButton">
+          Next
+          <mat-icon fontIcon="arrow_forward"></mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="personalDetailsForm">
+    <h3 class="text-center">About You</h3>
+    <form [formGroup]="personalDetailsForm">
+      <div class="d-flex">
+        <mat-form-field appearance="fill">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="firstName"
+            placeholder="First Name"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="lastName"
+            placeholder="Last Name"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          formControlName="email"
+          placeholder="Email"
+          required
+        />
+      </mat-form-field>
+      <div class="d-flex seeResultsBtn">
+        <button mat-raised-button matStepperPrevious>
+          <mat-icon fontIcon="arrow_back"></mat-icon>
+          Back
+        </button>
+        <button
+          mat-raised-button
+          matStepperNext
+          class="nextButton"
+          (click)="CalculateROI()"
+        >
+          See Your Results
+          <mat-icon fontIcon="arrow_forward"></mat-icon>
+        </button>
       </div>
     </form>
   </mat-step>
@@ -252,14 +315,7 @@
     <div class="d-flex roi-graph-block mt-25">
       <div style="width: 100%">
         <h4 class="text-center">ROI Summary</h4>
-        <!-- <div class="d-flex">
-          <div>Current Operations cost (Annual)</div>
-          <div>
-            <input type="text" />
-          </div>
-        </div> -->
         <form [formGroup]="roiSummaryForm" class="roiSummary">
-          <!-- <div class="d-flex"> -->
           <mat-form-field appearance="fill">
             <mat-label>Current Operations cost (Annual)</mat-label>
             <input
@@ -280,7 +336,6 @@
               required
             />
           </mat-form-field>
-          <!-- </div> -->
           <mat-form-field appearance="fill">
             <mat-label>Savings % of current cost</mat-label>
             <input
@@ -374,10 +429,16 @@
         </canvas>
       </div>
     </div>
-    <div class="mt-25">
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+    <div class="mt-25 d-flex">
+      <button mat-raised-button matStepperPrevious>
+        <mat-icon fontIcon="arrow_back"></mat-icon>
+        Back
+      </button>
+      <button mat-raised-button class="nextButton" (click)="stepper.reset()">
+        Reset
+        <mat-icon fontIcon="restart_alt"></mat-icon>
+      </button>
     </div>
   </mat-step>
 </mat-stepper>
-{{resultConsolidatedForm | json}}
+<!-- {{resultConsolidatedForm | json}} -->
