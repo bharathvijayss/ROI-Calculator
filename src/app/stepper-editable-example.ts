@@ -230,6 +230,12 @@ export class StepperEditableExample implements OnInit {
   botPlusRpaTeamEnateRecurringCost: any;
   botPlusRpaTeamNetOngoingSavings: any;
   savingsPercentOfCurrentCost: any;
+  enateCostAnnual: any;
+  deploymentCost = 0;
+  oDataCost = 10000;
+  supportModalCost = 7200;
+  estimatedEffortOptimizationOfTeamLead: any;
+  estimatedEffortOptimizationOfFte: any;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -239,17 +245,17 @@ export class StepperEditableExample implements OnInit {
 
   initForms() {
     this.personalDetailsForm = this._formBuilder.group({
-      firstName: ['bvv', [Validators.required, Validators.minLength(3)]],
-      lastName: ['bvv', [Validators.required, Validators.minLength(3)]],
-      email: ['vbvv@sfs.com', [Validators.required, Validators.email]],
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
     });
     this.costInputForm1 = this._formBuilder.group({
-      B16: [100, Validators.required],
-      B17: [120000, Validators.required],
+      B16: ['', Validators.required],
+      B17: ['', Validators.required],
     });
     this.costInputForm2 = this._formBuilder.group({
-      B19: [1000, Validators.required],
-      B20: [85000, Validators.required],
+      B19: ['', Validators.required],
+      B20: ['', Validators.required],
     });
 
     this.resultConsolidatedForm = {
@@ -293,7 +299,6 @@ export class StepperEditableExample implements OnInit {
       annualNetSavings: ['', Validators.required],
       estimatedEffortOptimizationOfTeamLead: ['', Validators.required],
       estimatedEffortOptimizationOfFte: ['', Validators.required],
-      enateCostOneOffSetup: ['', Validators.required],
       rolloutPeriod: [24, Validators.required],
       lagFromLicensesToSavings: [2, Validators.required],
     });
@@ -343,16 +348,14 @@ export class StepperEditableExample implements OnInit {
     };
   }
 
-  //Need to fix this method.
   CalculateROI() {
     this.processFormValues();
-    // this.initBarChartLabelsAndData();
+    this.initBarChartLabelsAndData();
     this.roiSummaryForm.controls.rolloutPeriod.disable();
     this.roiSummaryForm.controls.lagFromLicensesToSavings.disable();
     this.calculateAndUpdateROIForm();
   }
 
-  //Need to fix this method.
   calculateAndUpdateROIForm() {
     //Current Operations Cost Annual
     this.calculateCurrentOperationsAnnualCost();
@@ -363,15 +366,24 @@ export class StepperEditableExample implements OnInit {
     //Savings % of Current Cost
     this.calculateSavingsPercentOfCurrentCost();
 
+    //Enate Cost Annual
+    this.calculateEnateCostAnnual();
+
+    //Estimated Effort Optimization Of Team Lead
+    this.calculateEstimatedEffortOptimizationOfTeamLead();
+
+    //Estimated Effort Optimization Of FTE
+    this.calculateEstimatedEffortOptimizationOfFte();
+
     this.roiSummaryForm.patchValue({
       currentAnnualOperationsCost: this.currentAnnualOperationsCost,
       projectedAnnualOperationsCost: this.projectedAnnualOperationsCost,
       savingsPercentOfCurrentCost: this.savingsPercentOfCurrentCost,
-      // enateAnnualCost: ,
-      // annualNetSavings: ,
-      // estimatedEffortOptimizationOfTeamLead: ,
-      // estimatedEffortOptimizationOfFte: ,
-      // enateCostOneOffSetup:
+      enateAnnualCost: this.enateCostAnnual,
+      annualNetSavings: this.totalNetOngoingSavings,
+      estimatedEffortOptimizationOfTeamLead:
+        this.estimatedEffortOptimizationOfTeamLead,
+      estimatedEffortOptimizationOfFte: this.estimatedEffortOptimizationOfFte,
     });
   }
 
@@ -689,21 +701,68 @@ export class StepperEditableExample implements OnInit {
     ).toFixed(2);
   }
 
+  calculateEnateCostAnnual() {
+    this.enateCostAnnual =
+      this.humanStaff_EnateRecurringCost +
+      this.botPlusRpaTeamEnateRecurringCost +
+      this.deploymentCost +
+      this.oDataCost +
+      this.supportModalCost;
+  }
+
+  calculateEstimatedEffortOptimizationOfTeamLead() {
+    this.estimatedEffortOptimizationOfTeamLead = Math.round(
+      Number(
+        (
+          ((this.valueLeakageReductionByEnateHuman['6'] / 100) *
+            (this.resultConsolidatedForm['B33'] / 100) +
+            (this.valueLeakageReductionByEnateHuman['7'] / 100) *
+              (this.resultConsolidatedForm['B34'] / 100) +
+            (this.valueLeakageReductionByEnateHuman['8'] / 100) *
+              (this.resultConsolidatedForm['B35'] / 100) +
+            (this.valueLeakageReductionByEnateHuman['9'] / 100) *
+              (this.resultConsolidatedForm['B36'] / 100)) *
+          100
+        ).toFixed(2)
+      )
+    );
+  }
+
+  calculateEstimatedEffortOptimizationOfFte() {
+    this.estimatedEffortOptimizationOfFte = Math.round(
+      Number(
+        (
+          ((this.valueLeakageReductionByEnateHuman['1'] / 100) *
+            (this.resultConsolidatedForm['B26'] / 100) +
+            (this.valueLeakageReductionByEnateHuman['2'] / 100) *
+              (this.resultConsolidatedForm['B27'] / 100) +
+            (this.valueLeakageReductionByEnateHuman['3'] / 100) *
+              (this.resultConsolidatedForm['B28'] / 100) +
+            (this.valueLeakageReductionByEnateHuman['4'] / 100) *
+              (this.resultConsolidatedForm['B29'] / 100) +
+            (this.valueLeakageReductionByEnateHuman['5'] / 100) *
+              (this.resultConsolidatedForm['B30'] / 100)) *
+          100
+        ).toFixed(2)
+      )
+    );
+  }
+
   //Need to fix this method.
-  // initBarChartLabelsAndData() {
-  //   for (
-  //     let i = 1;
-  //     i <= this.roiSummaryForm.controls.rolloutPeriod.value;
-  //     i++
-  //   ) {
-  //     this.barChartLabels.push(i.toString());
-  //   }
-  //   this.barChartData.datasets[0].data = [
-  //     -848, -848, -689, -371, 105, 741, 1535, 2488, 3600, 4871, 6300, 7889,
-  //     8435, 8566, 9453, 9566, 10002, 10235, 11243, 15932, 18342, 19453, 20345,
-  //     24523,
-  //   ];
-  //   console.log(this.barChartLabels);
-  //   console.log(this.barChartData);
-  // }
+  initBarChartLabelsAndData() {
+    //   for (
+    //     let i = 1;
+    //     i <= this.roiSummaryForm.controls.rolloutPeriod.value;
+    //     i++
+    //   ) {
+    //     this.barChartLabels.push(i.toString());
+    //   }
+    //   this.barChartData.datasets[0].data = [
+    //     -848, -848, -689, -371, 105, 741, 1535, 2488, 3600, 4871, 6300, 7889,
+    //     8435, 8566, 9453, 9566, 10002, 10235, 11243, 15932, 18342, 19453, 20345,
+    //     24523,
+    //   ];
+    //   console.log(this.barChartLabels);
+    //   console.log(this.barChartData);
+  }
 }
