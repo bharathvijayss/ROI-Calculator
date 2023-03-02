@@ -50,6 +50,10 @@ mat-form-field {
   .d-flex.roi-graph-block {
     flex-direction: column-reverse;
   }
+  /* .roiSummary .d-flex {
+    flex-direction: column;
+    gap: 0;
+  } */
 }
 
 /* @media only screen and (max-width: 426px) {
@@ -61,4 +65,8 @@ mat-form-field {
 
 .text-center {
   text-align: center;
+}
+
+.chart {
+  width: 100% !important;
 }

@@ -1,5 +1,5 @@
 <mat-stepper linear #stepper>
-  <!-- <mat-step [stepControl]="personalDetailsForm1">
+  <mat-step [stepControl]="personalDetailsForm1">
     <form [formGroup]="personalDetailsForm1">
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
@@ -223,7 +223,7 @@
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
-  </mat-step> -->
+  </mat-step>
   <mat-step [stepControl]="botForm">
     <form [formGroup]="botForm" class="mt-25">
       <label id="bot-radio-group-label"> Do you use bots? </label>
@@ -258,7 +258,8 @@
             <input type="text" />
           </div>
         </div> -->
-        <form [formGroup]="roiSummaryForm">
+        <form [formGroup]="roiSummaryForm" class="roiSummary">
+          <!-- <div class="d-flex"> -->
           <mat-form-field appearance="fill">
             <mat-label>Current Operations cost (Annual)</mat-label>
             <input
@@ -279,6 +280,7 @@
               required
             />
           </mat-form-field>
+          <!-- </div> -->
           <mat-form-field appearance="fill">
             <mat-label>Savings % of current cost</mat-label>
             <input
@@ -361,7 +363,16 @@
           </mat-form-field>
         </form>
       </div>
-      <div style="background-color: blue; height: 120px; width: 100%"></div>
+      <div style="width: 100%">
+        <canvas
+          class="chart"
+          baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [type]="barChartType"
+        >
+        </canvas>
+      </div>
     </div>
     <div class="mt-25">
       <button mat-button matStepperPrevious>Back</button>
