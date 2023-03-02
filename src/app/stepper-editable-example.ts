@@ -267,11 +267,12 @@ export class StepperEditableExample implements OnInit {
     const costOfManager =
       NumberofLeadsOrManagersInOperation * this.resultConsolidatedForm.B17;
     const costOfManagerWithHike =
-      costOfManager * this.resultConsolidatedForm.B18;
+      costOfManager * (this.resultConsolidatedForm.B18 / 100);
     const NumberofDeliveryFTEInOperation = this.resultConsolidatedForm.B19;
     const costOfFTE =
       NumberofDeliveryFTEInOperation * this.resultConsolidatedForm.B20;
-    const costOfFTEWithHike = costOfFTE * this.resultConsolidatedForm.B21;
+    const costOfFTEWithHike =
+      costOfFTE * (this.resultConsolidatedForm.B21 / 100);
     const totalCostOfFTEWithHike = costOfFTE + costOfFTEWithHike;
     const totalCostOfManagerWithHike = costOfManager + costOfManagerWithHike;
     const currentAnnualOperationsCost =
