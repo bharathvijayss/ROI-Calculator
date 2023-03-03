@@ -145,3 +145,12 @@ button {
 .roiGraphFormFieldsBlock {
   width: 60%;
 }
+
+.roi-graph {
+  display: flex;
+  align-items: center;
+}
+
+.pb-25 {
+  padding-bottom: 25px;
+}
