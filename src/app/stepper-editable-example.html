@@ -312,113 +312,80 @@
   </mat-step>
 
   <mat-step>
-    <div class="d-flex roi-graph-block mt-25">
-      <div style="width: 100%">
+    <div class="d-flex roi-graph-block">
+      <div class="roiGraphFormFieldsBlock">
         <h4 class="text-center">ROI Summary</h4>
-        <form [formGroup]="roiSummaryForm" class="roiSummary">
-          <mat-form-field appearance="fill">
-            <mat-label>Current Operations cost (Annual)</mat-label>
-            <input
-              matInput
-              type="number"
-              formControlName="currentAnnualOperationsCost"
-              placeholder="Current Operations cost (Annual)"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Projected Operations Cost (Annual)</mat-label>
-            <input
-              matInput
-              type="number"
-              formControlName="projectedAnnualOperationsCost"
-              placeholder="Projected Operations Cost (Annual)"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Savings % of current cost</mat-label>
-            <input
-              matInput
-              type="number"
-              formControlName="savingsPercentOfCurrentCost"
-              placeholder="Savings % of current cost"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Enate Cost (Annual)</mat-label>
-            <input
-              matInput
-              type="number"
-              formControlName="enateAnnualCost"
-              placeholder="Enate Cost (Annual)"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Net Savings (Annual)</mat-label>
-            <input
-              matInput
-              type="number"
-              formControlName="annualNetSavings"
-              placeholder="Net Savings (Annual)"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Estimated Effort Optimization of Team Lead</mat-label>
-            <input
-              matInput
-              type="number"
-              formControlName="estimatedEffortOptimizationOfTeamLead"
-              placeholder="Estimated Effort Optimization of Team Lead"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Estimated Effort Optimization of FTE's</mat-label>
-            <input
-              matInput
-              type="number"
-              formControlName="estimatedEffortOptimizationOfFte"
-              placeholder="Estimated Effort Optimization of FTE's"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Enate Cost (One-Off Setup)</mat-label>
-            <input
-              matInput
-              type="number"
-              formControlName="enateCostOneOffSetup"
-              placeholder="Enate Cost (One-Off Setup)"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Rollout period</mat-label>
-            <input
-              matInput
-              type="number"
-              formControlName="rolloutPeriod"
-              placeholder="Rollout period"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field appearance="fill">
-            <mat-label>Lag from licenses to savings</mat-label>
-            <input
-              matInput
-              type="number"
-              formControlName="lagFromLicensesToSavings"
-              placeholder="Lag from licenses to savings"
-              required
-            />
-          </mat-form-field>
-        </form>
+
+        <div class="roiSummaryField">
+          <div>Current Operations cost (Annual) :</div>
+          <div class="roiSummaryFieldResult">
+            {{this.roiSummaryForm.controls.currentAnnualOperationsCost.value |
+            currency:'USD':'symbol':'2.0-0'}}
+          </div>
+        </div>
+
+        <div class="roiSummaryField">
+          <div>Projected Operations Cost (Annual) :</div>
+          <div class="roiSummaryFieldResult">
+            {{this.roiSummaryForm.controls.projectedAnnualOperationsCost.value |
+            currency:'USD':'symbol':'2.0-0'}}
+          </div>
+        </div>
+
+        <div class="roiSummaryField">
+          <div>Savings % of current cost :</div>
+          <div class="roiSummaryFieldResult">
+            {{this.roiSummaryForm.controls.savingsPercentOfCurrentCost.value}} %
+          </div>
+        </div>
+
+        <div class="roiSummaryField">
+          <div>Enate Cost (Annual) :</div>
+          <div class="roiSummaryFieldResult">
+            {{this.roiSummaryForm.controls.enateAnnualCost.value |
+            currency:'USD':'symbol':'2.0-0'}}
+          </div>
+        </div>
+
+        <div class="roiSummaryField">
+          <div>Net Savings (Annual) :</div>
+          <div class="roiSummaryFieldResult">
+            {{this.roiSummaryForm.controls.annualNetSavings.value |
+            currency:'USD':'symbol':'2.0-0'}}
+          </div>
+        </div>
+
+        <div class="roiSummaryField">
+          <div>Estimated Effort Optimization of Team Lead :</div>
+          <div class="roiSummaryFieldResult">
+            {{this.roiSummaryForm.controls.estimatedEffortOptimizationOfTeamLead.value
+            }} %
+          </div>
+        </div>
+
+        <div class="roiSummaryField">
+          <div>Estimated Effort Optimization of FTE's :</div>
+          <div class="roiSummaryFieldResult">
+            {{this.roiSummaryForm.controls.estimatedEffortOptimizationOfFte.value
+            }} %
+          </div>
+        </div>
+
+        <div class="roiSummaryField">
+          <div>Rollout period :</div>
+          <div class="roiSummaryFieldResult">
+            {{this.roiSummaryForm.controls.rolloutPeriod.value}}
+          </div>
+        </div>
+
+        <div class="roiSummaryField">
+          <div>Lag from licenses to savings :</div>
+          <div class="roiSummaryFieldResult">
+            {{this.roiSummaryForm.controls.lagFromLicensesToSavings.value}}
+          </div>
+        </div>
       </div>
-      <div style="width: 100%">
+      <div style="width: 100%" class="roi-graph">
         <canvas
           class="chart"
           baseChart
@@ -429,7 +396,7 @@
         </canvas>
       </div>
     </div>
-    <div class="mt-25 d-flex">
+    <div class="pb-25 d-flex">
       <button mat-raised-button matStepperPrevious>
         <mat-icon fontIcon="arrow_back"></mat-icon>
         Back
@@ -441,4 +408,3 @@
     </div>
   </mat-step>
 </mat-stepper>
-<!-- {{resultConsolidatedForm | json}} -->

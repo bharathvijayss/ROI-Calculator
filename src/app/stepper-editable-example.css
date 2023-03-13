@@ -60,9 +60,26 @@ div.d-flex {
   gap: 0.5rem;
 }
 
+.d-flex.roi-graph-block {
+  align-items: unset;
+  gap: 4rem;
+}
+
 @media only screen and (max-width: 769px) {
   .d-flex.roi-graph-block {
     flex-direction: column-reverse;
+    gap: 1rem;
+  }
+
+  .roiSummaryField {
+    flex-direction: column !important;
+    margin-bottom: 2rem;
+  }
+}
+
+@media only screen and (max-width: 1025px) {
+  .roiGraphFormFieldsBlock {
+    width: 100% !important;
   }
 }
 
@@ -109,4 +126,31 @@ button {
     align-items: stretch;
     gap: 1rem !important;
   }
+}
+
+.roiSummaryField {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.roiSummaryFieldResult {
+  font-weight: bold;
+  min-width: 25px;
+}
+
+.roiGraphFormFieldsBlock {
+  width: 60%;
+}
+
+.roi-graph {
+  display: flex;
+  align-items: center;
+}
+
+.pb-25 {
+  padding-bottom: 25px;
 }
